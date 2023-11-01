@@ -6,6 +6,10 @@
 .pnp.js
 .yarn/install-state.gz
 
+# prisma
+/prisma/migrations/**
+!/prisma/migrations/migration_lock.toml
+
 # testing
 /coverage
 
