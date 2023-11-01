@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:see": "prisma studio",
-    "db:sync": "prisma db push && prisma generate"
+    "db:sync": "prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^5.5.2",
