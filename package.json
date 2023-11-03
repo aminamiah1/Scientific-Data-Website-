@@ -7,9 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "db:see": "prisma studio",
+    "db:sync": "prisma db push"
   },
   "dependencies": {
+    "@prisma/client": "^5.5.2",
     "next": "^13",
     "react": "^18",
     "react-dom": "^18"
@@ -19,6 +22,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
+    "prisma": "^5.5.2",
     "cypress": "^13.4.0",
     "eslint": "^8",
     "eslint-config-next": "^13.0.0",
