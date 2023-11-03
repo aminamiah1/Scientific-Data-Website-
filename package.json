@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "cy:open": "cypress open",
     "db:see": "prisma studio",
     "db:sync": "prisma db push"
   },
@@ -21,11 +22,13 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
-    "eslint": "^8",
-    "eslint-config-next": "^13",
-    "postcss": "^8",
     "prisma": "^5.5.2",
-    "tailwindcss": "^3",
+    "cypress": "^13.4.0",
+    "eslint": "^8",
+    "eslint-config-next": "^13.0.0",
+    "postcss": "^8",
+    "sass": "^1.69.5",
+    "tailwindcss": "^3.3.5",
     "typescript": "^5"
   }
 }
