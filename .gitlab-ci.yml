@@ -1,0 +1,6 @@
+build-job:
+  image: node:20
+  stage: build
+  script:
+    - npm ci
+    - npm run build
