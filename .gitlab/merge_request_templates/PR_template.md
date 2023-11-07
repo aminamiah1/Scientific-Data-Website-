@@ -17,6 +17,7 @@ Please tick all that's been checked
 - [ ] I have tested these changes locally.
 - [ ] I have updated the documentation, if necessary.
 - [ ] My code follows the project's coding style guidelines.
+- [ ] I have used prettier to format the code to make everyone's life easier.
 - [ ] I have added or updated tests.
 - [ ] All tests passed.
 - [ ] I have updated the README, if necessary.
