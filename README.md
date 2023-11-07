@@ -9,6 +9,7 @@ Table of Contents
     - [Useful Commands](#useful-commands)
     - [Using data in the application](#using-data-in-the-application)
     - [TODOs](#todos)
+- [Contributing](#contributing)
 - [Learn More](#learn-more)
 - [Deploy on Vercel](#deploy-on-vercel)
 
@@ -88,6 +89,9 @@ To interact with the Prisma Client, see [this guide](https://www.prisma.io/docs/
 
 ### TODOs
 - [ ] Look into [DB Migrations](https://www.prisma.io/migrate) in prod
+
+# Contributing
+When wanting to implement a new feature, create a new issue with the `User Story` template.  Fill out the fields, and then create a `feature/*` branch off of the current week's release branch.
 
 # Learn More
 
