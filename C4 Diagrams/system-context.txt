@@ -1,0 +1,10 @@
+@startuml
+!theme plain
+title System Context Diagram
+actor public as "Public"
+actor admin as "Admin"
+[webapp] as "Web App"
+ 
+public --> webapp: Uses
+admin --> webapp: Updates
+@enduml
