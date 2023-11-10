@@ -1,6 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  padding: 0;
+  box-sizing: border-box;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -16,12 +23,23 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.title {
+  @apply text-[25px] ml-4 font-montserrat font-bold;
 }
+
+.subtitle {
+  @apply text-[15px] m-4 font-montserrat;
+}
+
+.lineBreak {
+  @apply w-[90%] h-0.5 mx-auto my-4 bg-gray-300 border-0 rounded dark:bg-gray-700;
+}
+
+.figureText{
+  @apply text-[13px] mx-auto max-w-2xl bg-customBlue text-white p-4;
+}
+
+.lineBreakFigureText {
+  @apply w-[45%] h-[0.1rem] mx-auto my-4 bg-white border-0 rounded;
+}
+
