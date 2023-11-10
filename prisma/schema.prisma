@@ -10,10 +10,141 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Just a test model so that we can see if prisma is working
-model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
+model AnnualHeatDemandLSOA {
+  LSOA11CD                            String @id
+  Area                                Float
+
+  AvgAfterDetachedBiomassBoiler       Float
+  AvgAfterDetachedGasBoiler           Float
+  AvgAfterDetachedOilBoiler           Float
+  AvgAfterDetachedResistanceHeating   Float
+
+  AvgAfterFlatBiomassBoiler           Float
+  AvgAfterFlatGasBoiler               Float
+  AvgAfterFlatOilBoiler               Float
+  AvgAfterFlatResistanceHeating       Float
+
+  AvgAfterSemiBiomassBoiler           Float
+  AvgAfterSemiGasBoiler               Float
+  AvgAfterSemiOilBoiler               Float
+  AvgAfterSemiResistanceHeating       Float
+
+  AvgAfterTerracedBiomassBoiler       Float
+  AvgAfterTerracedGasBoiler           Float
+  AvgAfterTerracedOilBoiler           Float
+  AvgAfterTerracedResistanceHeating   Float
+
+  AvgBeforeDetachedBiomassBoiler      Float
+  AvgBeforeDetachedGasBoiler          Float
+  AvgBeforeDetachedOilBoiler          Float
+  AvgBeforeDetachedResistanceHeating  Float
+
+  AvgBeforeFlatBiomassBoiler          Float
+  AvgBeforeFlatGasBoiler              Float
+  AvgBeforeFlatOilBoiler              Float
+  AvgBeforeFlatResistanceHeating      Float
+
+  AvgBeforeSemiBiomassBoiler          Float
+  AvgBeforeSemiGasBoiler              Float
+  AvgBeforeSemiOilBoiler              Float
+  AvgBeforeSemiResistanceHeating      Float
+
+  AvgBeforeTerracedBiomassBoiler      Float
+  AvgBeforeTerracedGasBoiler          Float
+  AvgBeforeTerracedOilBoiler          Float
+  AvgBeforeTerracedResistanceHeating  Float
+
+  LocalAuthorityPrevious              String
+  LocalAuthorityCurrent               String
+
+  NoOfDetachedBiomassBoilers          Int
+  NoOfDetachedGasBoilers              Int
+  NoOfDetachedOilBoilers              Int
+  NoOfDetachedResistanceHeaters       Int
+
+  NoOfFlatBiomassBoilers              Int
+  NoOfFlatGasBoilers                  Int
+  NoOfFlatOilBoilers                  Int
+  NoOfFlatResistanceHeaters           Int
+
+  NoOfSemiBiomassBoilers              Int
+  NoOfSemiGasBoilers                  Int
+  NoOfSemiOilBoilers                  Int
+  NoOfSemiResistanceHeaters           Int
+
+  NoOfTerracedBiomassBoilers          Int
+  NoOfTerracedGasBoilers              Int
+  NoOfTerracedOilBoilers              Int
+  NoOfTerracedResistanceHeaters       Int
+
+  RoadLength                          Float
+  Rurality                            String
+
+  TotalHeatDemandBefore               BigInt
+  TotalHeatDemandAfter                BigInt
+}
+
+model EnergyEfficiencyImprovementsCostsLA {
+  LocalAuthority                      String @id
+
+  AvgImpCostDetachedGasBoiler         Float
+  AvgImpCostDetachedOilBoiler         Float
+  AvgImpCostDetachedResistanceHeater  Float
+  AvgImpCostDetachedBiomassBoiler     Float
+
+  AvgImpCostFlatGasBoiler             Float
+  AvgImpCostFlatOilBoiler             Float
+  AvgImpCostFlatResistanceHeater      Float
+  AvgImpCostFlatBiomassBoiler         Float
+
+  AvgImpCostSemiGasBoiler             Float
+  AvgImpCostSemiOilBoiler             Float
+  AvgImpCostSemiResistanceHeater      Float
+  AvgImpCostSemiBiomassBoiler         Float
+
+  AvgImpCostTerracedGasBoiler         Float
+  AvgImpCostTerracedOilBoiler         Float
+  AvgImpCostTerracedResistanceHeater  Float
+  AvgImpCostTerracedBiomassBoiler     Float
+
+  NoOfDetachedGasBoilers              Int
+  NoOfDetachedResistanceHeaters       Int
+  NoOfDetachedOilBoilers              Int
+  NoOfDetachedBiomassBoilers          Int
+
+  NoOfSemiGasBoilers                  Int
+  NoOfSemiResistanceHeaters           Int
+  NoOfSemiOilBoilers                  Int
+  NoOfSemiBiomassBoilers              Int
+
+  NoOfTerracedGasBoilers              Int
+  NoOfTerracedResistanceHeaters       Int
+  NoOfTerracedOilBoilers              Int
+  NoOfTerracedBiomassBoilers          Int
+
+  NoOfFlatGasBoilers                  Int
+  NoOfFlatResistanceHeaters           Int
+  NoOfFlatOilBoilers                  Int
+  NoOfFlatBiomassBoilers              Int
+
+  TotalImprovementCosts               Float
+}
+
+model HalfHourlyProfilesOfHeatingTechnologies {
+  Id                                  Int @id @default(autoincrement())
+  Index                               DateTime
+
+  NormalisedASHPHeat                  Float
+  NormalisedASHPElec                  Float
+
+  NormalisedGSHPHeat                  Float
+  NormalisedGSHPElec                  Float
+
+  NormalisedResistanceHeaterHeat      Float
+  NormalisedResistanceHeaterElec      Float
+
+  NormalisedGasBoilerHeat             Float
+  NormalisedGasBoilerGas              Float
+
+  UKDailyAverageOAT                   Float
 }
