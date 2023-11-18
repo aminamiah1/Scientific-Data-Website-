@@ -1,0 +1,19 @@
+@startuml
+!theme plain
+title Container Diagram
+actor public as "Public"
+actor admin as "Admin"
+rectangle app as "Research Data\nVizualisation System"{
+  ["Web App"]
+  ["NodeJS API\nEndpoints"]
+  database MariaDB
+}
+ 
+public --> ["Web App"]: Uses
+admin --> ["Web App"]: Uses
+["Web App"] --> ["NodeJS API\nEndpoints"]: API calls to
+["NodeJS API\nEndpoints"] --> MariaDB: Reads from\nand writes to
+note right of ["NodeJS API\nEndpoints"]: TypeScript + NodeJS
+note right of ["NodeJS API\nEndpoints"]: JSON/HTTPS\nAPI
+note right of ["Web App"]: TypeScript + Next.js
+@enduml
