@@ -1,0 +1,21 @@
+@startuml
+!theme plain
+title Component Diagram
+[webapp] as "Web App"
+rectangle "API Application" {
+  rectangle c1 as "Component 1"
+  rectangle c2 as "Component 2"
+  rectangle c3 as "Component 3"
+  rectangle c4 as "Component 4"
+  rectangle c5 as "Component 5"
+}
+database MariaDB
+ 
+[webapp] --> c1: Uses
+[webapp] --> c3: Uses
+[webapp] --> c4: Uses
+c4 --> c2: Uses
+c2 -left-> c5: Uses
+c3 --> MariaDB: Stores
+c2 --> MariaDB: Stores
+@enduml
