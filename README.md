@@ -1,4 +1,5 @@
 # Table of Contents
+# Table of Contents
 
 -   [Table of Contents](#table-of-contents)
 -   [Getting Started](#getting-started)
@@ -116,6 +117,40 @@ CREATE SCHEMA group6;
 
 | Endpoint | Description | Method | Status Code |
 |---|---|---|---|
+| `/heat-demand` | Get/Post heat demand data | GET/POST | 200 (OK) or 404 (Not Found) |
+
+### API documentation
+
+#### Admin Endpoints
+
+| Endpoint        | Description                 | Method | Status Code                    |
+| --------------- | --------------------------- | ------ | ------------------------------ |
+| `/admin/login`  | Return login result         | GET    | 200 (OK) or 401 (Unauthorized) |
+| `/admin/login`  | Login to the admin panel    | POST   | 200 (OK) or 401 (Unauthorized) |
+| `/admin/logout` | Logout from the admin panel | GET    | 200 (OK)                       |
+
+#### Breakdown Endpoints
+
+| Endpoint                     | Description                                   | Method   | Status Code                 |
+| ---------------------------- | --------------------------------------------- | -------- | --------------------------- |
+| `/breakdown/heat/dwelling`   | Get/Post heat breakdown by dwelling type      | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/heat/tech`       | Get/Post heat breakdown by heating technology | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/heat/total`      | Get/Post total heat demand                    | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/energy/dwelling` | Get/Post energy breakdown by dwelling types   | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/energy/tech`     | Get/Post energy breakdown by technology       | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/energy/total`    | Get/Post total energy demand                  | GET/POST | 200 (OK) or 404 (Not Found) |
+
+#### Half-Hourly Endpoints
+
+| Endpoint              | Description                      | Method   | Status Code                 |
+| --------------------- | -------------------------------- | -------- | --------------------------- |
+| `/half-hourly/energy` | Get/Post half-hourly energy data | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/half-hourly/gas`    | Get/Post half-hourly gas data    | GET/POST | 200 (OK) or 404 (Not Found) |
+
+#### Heat Demand Endpoint
+
+| Endpoint       | Description               | Method   | Status Code                 |
+| -------------- | ------------------------- | -------- | --------------------------- |
 | `/heat-demand` | Get/Post heat demand data | GET/POST | 200 (OK) or 404 (Not Found) |
 
 ### Useful Commands

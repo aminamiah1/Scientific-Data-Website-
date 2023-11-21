@@ -1,34 +1,34 @@
 const baseURL: string = 'localhost:3000/api';
 const baseResponse: string = '- GET request';
-describe('/admin/login', () => {
+describe('/admin/sign-in', () => {
   it('GET request', () => {
-    cy.request('GET', `${baseURL}/admin/login`)
+    cy.request('GET', `${baseURL}/admin/sign-in`)
       .its('status')
       .should('equal', 200)
-      cy.request('GET', `${baseURL}/admin/login`)
+      cy.request('GET', `${baseURL}/admin/sign-in`)
       .its('body')
       .should('deep.equal', { message: `Log in ${baseResponse}` })
   });
 
   it('POST request', () => {
-    cy.request('POST', `${baseURL}/admin/login`)
+    cy.request('POST', `${baseURL}/admin/sign-in`)
       .its('status')
       .should('equal', 200)
   });
 });
 
-describe('/admin/logout', () => {
+describe('/admin/sign-out', () => {
   it('GET request', () => {
-    cy.request('GET', `${baseURL}/admin/logout`)
+    cy.request('GET', `${baseURL}/admin/sign-out`)
       .its('status')
       .should('equal', 200)
-      cy.request('GET', `${baseURL}/admin/logout`)
+      cy.request('GET', `${baseURL}/admin/sign-out`)
       .its('body')
       .should('deep.equal', { message: `Log out ${baseResponse}` })
   });
 
   it('POST request', () => {
-    cy.request('POST', `${baseURL}/admin/logout`)
+    cy.request('POST', `${baseURL}/admin/sign-out`)
       .its('status')
       .should('equal', 200)
   });
