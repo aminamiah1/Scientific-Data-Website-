@@ -219,7 +219,3 @@ export async function loadHalfHourlyProfilesOfHeatingTechnologies(filename) {
     await prisma.$disconnect();
   }
 }
-
-// loadAnnualHeatDemandLSOA('./Annual_heat_demand_LSOA.csv');
-// loadEnergyEfficiencyImprovementCosts('./Energy_efficiency_improvements_costs_LA.csv');
-// loadHalfHourlyProfilesOfHeatingTechnologies('./Half-hourly_profiles_of_heating_technologies.csv');
