@@ -21,7 +21,7 @@ Data describing the dwelling stock, heating technologies, annual heat demand for
 <table className="table-auto">
   <tr>
     <th>Measurement(s)</th>
-    <td>Annual heat demand | Half hourly heat production of ASHP's, GSHP's, gas boilers and resistance heaters | Half-hourly energy consumption of ASHP's, GSHP's, gas boilers and resistance heaters | Cost of energy efficiency </td>
+    <td>Annual heat demand | Half hourly heat production of ASHP{'\''}s, GSHP{'\''}s, gas boilers and resistance heaters | Half-hourly energy consumption of ASHP{'\''}s, GSHP{'\''}s, gas boilers and resistance heaters | Cost of energy efficiency </td>
   </tr>
   <tr>
     <th>Technology Type(s)</th>
