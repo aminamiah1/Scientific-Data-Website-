@@ -61,6 +61,20 @@ To start running all the end-to-end tests, you can use the following command:
 npm run e2e
 ```
 
+### Custom Commands
+
+To select an HTML Element for testing specifically for Cypress, use `data-cy`.
+
+Example:
+```tsx
+<h2 data-cy="main-page-title">Title</h2>
+```
+
+Then in the Cypress test file, to select the Element, use:
+```tsx
+cy.getByTestId("main-page-title"). ... ;
+```
+
 ## Prisma
 
 Although Prisma's DB protocol says `mysql`, it's supported by MariaDB.
