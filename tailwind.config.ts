@@ -11,12 +11,18 @@ const config: Config = {
       backgroundImage: {
         'banner-bg': "url('/images/bannerBg.jpg')",
         'contact-bg': "url('/images/worldMap.jpg')",
+        'navimage-bg': "url('/images/banner.jpg')",
+        'hand-bg': "url('/images/hand.png')"
       },
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
       },
       colors: {
-        customBlue: 'rgba(1, 111, 160, 0.45)',
+        customBlue: '#D6F6E7',
+        yellow: '#FDFD96',
+        pink: '#F8C8DC',
+        bleu: '#A7C7E7',
+        purple: '#C3B1E1'
       },
 
     },

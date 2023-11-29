@@ -1,47 +1,44 @@
-import React from "react";
-import { BsFillMoonFill } from "react-icons/bs";
-import { CgProfile } from "react-icons/cg";
-import { FiMenu } from "react-icons/fi";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
+import { BsFillMoonFill } from 'react-icons/bs';
+import { CgProfile } from 'react-icons/cg';
+import { FiMenu } from 'react-icons/fi';
 
 const Navbar = () => {
   return (
-    <div className="w-full h-96 bg-banner-bg">
-    <div className="w-full h-20 lg:h-28 border-b-[1px] border-gray-500 text-black lg:text-white bg-white lg:bg-transparent">
+    <div className="w-full h-20 lg:h-28 border-b border-gray-300 bg-white shadow-md">
       <div className="max-w-screen-2xl h-full mx-auto px-4 flex items-center justify-between">
-        <h1 className="text-black uppercase font-bold">logo</h1>
-        <ul className="text-[13px] hidden lg:flex items-center gap-8 uppercase text-black font-bold">
-          <li className="hover:text-[#FED136]">
+        <h1 className="text-xl lg:text-2xl font-bold text-gray-800">logo</h1>
+        <ul className="hidden lg:flex items-center gap-6 lg:gap-8 text-sm lg:text-base font-medium text-gray-600">
+          <li className="hover:text-blue-600">
             <Link href="/" data-cy="nav-home">Home</Link>
           </li>
-          <li className="hover:text-[#FED136]">
+          <li className="hover:text-blue-600">
             <Link href="/heat-demand" data-cy="nav-heat-demand">Heat Demand</Link>
           </li>
-          <li className="hover:text-[#FED136]">
-            <Link href="/breakdown/heat" data-cy="nav-breakdown-heat">Breakdown OF Heat</Link>
+          <li className="hover:text-blue-600">
+            <Link href="/breakdown/heat" data-cy="nav-breakdown-heat">Breakdown of Heat</Link>
           </li>
-          <li className="hover:text-[#FED136]">
-            <Link href="/breakdown/energy" data-cy="nav-breakdown-energy">Breakdown OF Energy</Link>
+          <li className="hover:text-blue-600">
+            <Link href="/breakdown/energy" data-cy="nav-breakdown-energy">Breakdown of Energy</Link>
           </li>
-          <li className="hover:text-[#FED136]">
-            <Link href="/half-hourly/gas-boilers" data-cy="nav-half-hourly-gas-boilers">Half hourly - Gas Boilers</Link>
+          <li className="hover:text-blue-600">
+            <Link href="/half-hourly/gas-boilers" data-cy="nav-half-hourly-gas-boilers">Half Hourly - Gas Boilers</Link>
           </li>
-          <li className="hover:text-[#FED136]">
-            <Link href="/half-hourly/resistance-heaters" data-cy="nav-half-hourly-resistance-heaters">Half hourly - Resistance Heaters</Link>
+          <li className="hover:text-blue-600">
+            <Link href="/half-hourly/resistance-heaters" data-cy="nav-half-hourly-resistance-heaters">Half Hourly - Resistance Heaters</Link>
           </li>
         </ul>
-        <div className="flex gap-8 items-center">
-          <BsFillMoonFill className="text-black" />
+        <div className="flex gap-4 lg:gap-8 items-center">
+          <BsFillMoonFill className="text-2xl text-gray-800 hover:text-blue-600" />
           <div className="relative">
-            <CgProfile className="text-black" />
-            <span className="w-4 h-4 bg-yellow-600 text-white rounded-full absolute -top-2 -right-2 text-xs flex items-center justify-center">
-              0
-            </span>
+          <Link href="/admin/sign-in">
+              <CgProfile className="text-2xl text-gray-800 cursor-pointer hover:text-blue-600" />
+            </Link>
           </div>
+          <FiMenu className="text-3xl lg:hidden text-gray-800 hover:text-blue-600" />
         </div>
-        <FiMenu className="text-3xl lg:hidden" />
       </div>
-    </div>
     </div>
   );
 };

@@ -41,11 +41,15 @@ body, .montserrat-font {
 }
 
 .figureText{
-  @apply text-[13px] mx-auto max-w-2xl bg-customBlue text-white p-4 font-montserrat;
+  @apply text-[13px] mx-auto max-w-2xl bg-customBlue text-black p-4 font-montserrat shadow-md;
+}
+
+.figureTextCustom{
+  @apply text-[13px] mx-auto max-w-2xl text-black p-4 font-montserrat shadow-md;
 }
 
 .lineBreakFigureText {
-  @apply w-[45%] h-[0.1rem] mx-auto my-4 bg-white border-0 rounded;
+  @apply w-[45%] h-[0.1rem] mx-auto my-4 bg-black border-0 rounded;
 }
 
 .input-field {
@@ -57,6 +61,8 @@ body, .montserrat-font {
 }
 
 .submit-button {
-  @apply px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-3 md:text-lg md:px-8;
+  @apply px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-bleu hover:bg-bleu md:py-3 md:text-lg md:px-8;
 }
+
+
 
