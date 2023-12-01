@@ -9,7 +9,9 @@ const Navbar = () => {
     
     <div className="w-full h-20 lg:h-28 border-b border-gray-300 bg-white shadow-md">
       <div className="max-w-screen-2xl h-full mx-auto px-4 flex items-center justify-between">
-        <h1 className="text-xl lg:text-2xl font-bold text-gray-800">logo</h1>
+      <Link href="/" data-cy="nav-home">
+      <img src="/images/logo.png" alt="bug" className="smallerLogo"/>
+      </Link>
         <ul className="hidden lg:flex items-center gap-6 lg:gap-8 text-sm lg:text-base font-medium text-gray-600">
           <li className="hover:text-blue-600">
             <Link href="/" data-cy="nav-home">Home</Link>
