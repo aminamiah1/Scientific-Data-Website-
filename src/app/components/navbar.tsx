@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BsFillMoonFill } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { FiMenu } from 'react-icons/fi';
@@ -10,7 +11,7 @@ const Navbar = () => {
     <div className="w-full h-20 lg:h-28 border-b border-gray-300 bg-white shadow-md">
       <div className="max-w-screen-2xl h-full mx-auto px-4 flex items-center justify-between">
       <Link href="/" data-cy="nav-home">
-      <img src="/images/logo.png" alt="bug" className="smallerLogo"/>
+      <Image src="/images/logo.png" alt="bug" width={100} height={100}/>
       </Link>
         <ul className="hidden lg:flex items-center gap-6 lg:gap-8 text-sm lg:text-base font-medium text-gray-600">
           <li className="hover:text-blue-600">
