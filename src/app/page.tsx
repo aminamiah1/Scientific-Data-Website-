@@ -25,7 +25,7 @@ export default function Home() {
             <tbody className="divide-y divide-gray-300">
               <tr>
                 <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 bg-gray-200">Measurement(s)</th>
-                <td className="px-4 py-3 text-sm text-gray-600">Annual heat demand | Half hourly heat production of ASHP's, GSHP's, gas boilers and resistance heaters | Half-hourly energy consumption of ASHP's, GSHP's, gas boilers and resistance heaters | Cost of energy efficiency </td>
+                <td className="px-4 py-3 text-sm text-gray-600">Annual heat demand | Half hourly heat production of ASHP{'\''}s, GSHP{'\''}s, gas boilers and resistance heaters | Half-hourly energy consumption of ASHP{'\''}s, GSHP{'\''}s, gas boilers and resistance heaters | Cost of energy efficiency </td>
               </tr>
               <tr>
                 <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 bg-gray-200">Technology Type(s)</th>
