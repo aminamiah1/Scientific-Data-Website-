@@ -6,6 +6,7 @@ import { FiMenu } from 'react-icons/fi';
 
 const Navbar = () => {
   return (
+    
     <div className="w-full h-20 lg:h-28 border-b border-gray-300 bg-white shadow-md">
       <div className="max-w-screen-2xl h-full mx-auto px-4 flex items-center justify-between">
         <h1 className="text-xl lg:text-2xl font-bold text-gray-800">logo</h1>
