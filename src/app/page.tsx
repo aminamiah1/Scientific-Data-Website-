@@ -1,7 +1,7 @@
 export default function Home() {
-    return (
-      <>
-            <div className="my-8 max-w-screen-xl mx-auto px-10 md:px-32">
+  return (
+    <>
+      <div className="my-8 max-w-screen-xl mx-auto px-10 md:px-32">
         <div className="md:float-right md:ml-6">
           <div className="h-96 w-96 bg-navimage-bg bg-cover bg-center" />
         </div>
@@ -13,16 +13,13 @@ export default function Home() {
             </h1>
           </div>
           <p className="text-lg subtitle mt-8">
-            The decarbonisation of residential heating is crucial if the net-zero target in the United Kingdom is going to be achieved. This paper describes methods to produce data to quantify the impacts of residential heat decarbonisation on the energy supply infrastructure across England and Wales. For the year 2018, annual heat demand for a range of dwellings was estimated for almost 35,000 local areas (known as Lower Layer Super Output Areas: LSOAs). Energy savings through implementing the potential energy efficiency measures and the indicative costs of the energy efficiency measures were quantified. Profiles were synthesised for heat production and energy demand of selected heating technologies using average daily temperature and data from trial projects. These profiles were created to study the impacts of different types of heating technology in each LSOA under user-defined heat decarbonisation pathways. Data describing the dwelling stock, heating technologies, annual heat demand for each LSOA, indicative costs of energy efficiency improvements for each local authority and the profiles for each technology were created.
+            The decarbonisation of residential heating is crucial if the net-zero target in the United Kingdom is going to be achieved. This paper describes methods to produce data to quantify the impacts of residential heat decarbonisation on the energy supply infrastructure across England and Wales. For the year 2018, annual heat demand for a range of dwellings was estimated for almost 35,000 local areas (known as Lower Layer Super Output Areas: LSOAs). Energy savings through implementing the potential energy efficiency measures and the indicative costs of the energy efficiency measures were quantified. Profiles were synthesized for heat production and energy demand of selected heating technologies using average daily temperature and data from trial projects. These profiles were created to study the impacts of different types of heating technology in each LSOA under user-defined heat decarbonisation pathways. Data describing the dwelling stock, heating technologies, annual heat demand for each LSOA, indicative costs of energy efficiency improvements for each local authority and the profiles for each technology were created.
           </p>
         </div>
-      
-
       </div>
       <div className="my-8 px-10 md:px-32 montserrat-font">
         <div className="my-6">
         </div>
-        
         <div className="overflow-x-auto">
           <table className="table-auto w-full mb-4 bg-gray-100 shadow-md rounded-lg">
             <tbody className="divide-y divide-gray-300">
@@ -45,10 +42,8 @@ export default function Home() {
             </tbody>
           </table>
         </div>
-
         <hr className="my-4"></hr>
       </div>
-
       <h1 className="text-4xl font-bold my-8 px-10 md:px-32 title">BACKGROUND + SUMMARY</h1>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-10 md:px-32 subtitle">
         <p>WHAT ARE THE SUITABLE TECHNOLOGICAL OPTIONS FOR HEAT DECARBONISATION?</p>
@@ -57,31 +52,31 @@ export default function Home() {
       <br/>
       <br/>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-10 md:px-32">
-      <div className="figureTextCustom bg-pink ">
-          <h1 className='title '>#1</h1>
+        <div className="figureTextCustom bg-pink ">
+          <h1 className="title ">#1</h1>
           <p> Decarbonising heat is a major challenge facing UK energy policy. In 2018, residential space heating and hot water were responsible for 394 TWh of the final energy consumption of the UK.</p>
           <hr className="lineBreakFigureText"></hr>
           <br/>
-      </div>
-      <div className="figureTextCustom bg-yellow">
-          <h1 className='title '>#2</h1>
+        </div>
+        <div className="figureTextCustom bg-yellow">
+          <h1 className="title ">#2</h1>
           <p>  This is approximately 41% of total UK final energy consumption across all sectors (excluding transport). This is the equivalent of more than 78 MtCO2e (calculated using carbon emissions factors.</p>
           <hr className="lineBreakFigureText"></hr>
           <br/>
-      </div>
-      <div className="figureTextCustom bg-bleu ">
-          <h1 className='title '>#3</h1>
+        </div>
+        <div className="figureTextCustom bg-bleu ">
+          <h1 className="title ">#3</h1>
           <p> Currently, residential heating in the UK is mostly reliant on natural gas. In 2018, 302 TWh of natural gas was consumed for space heating and hot water.</p>
           <hr className="lineBreakFigureText"></hr>
           <br/>
-      </div>
-      <div className="figureTextCustom bg-purple ">
-          <h1 className='title '>#4</h1>
+        </div>
+        <div className="figureTextCustom bg-purple ">
+          <h1 className="title ">#4</h1>
           <p> To achieve its net-zero target by 2050, the UK residential heat sector is expected to undergo a radical change to significantly increase the installation of heat pumps and hydrogen boilers.</p>
           <hr className="lineBreakFigureText"></hr>
           <br/>
-      </div>
+        </div>
       </div>
     </>
-    );
+  );
 }
