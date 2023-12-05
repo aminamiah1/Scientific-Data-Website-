@@ -1,37 +1,47 @@
 {
-  "name": "group-6-project",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "e2e": "cypress run",
-    "lint": "next lint",
-    "cy:open": "cypress open",
-    "db:see": "prisma studio",
-    "db:sync": "prisma db push"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.5.2",
-    "next": "^13.5.6",
-    "next-auth": "^4.24.4",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-icons": "^4.11.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10",
-    "cypress": "^13.4.0",
-    "eslint": "^8",
-    "eslint-config-next": "^13.0.0",
-    "postcss": "^8",
-    "prisma": "^5.5.2",
-    "sass": "^1.69.5",
-    "tailwindcss": "^3.3.5",
-    "typescript": "^5"
-  }
+    "name": "group-6-project",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "test:api": "cypress run --component --spec \"cypress/api/*.cy.ts\"",
+        "test:component": "cypress run --component --spec \"cypress/component/*.cy.ts\"",
+        "test:e2e": "cypress run",
+        "test:all": "npm run test:api && npm run test:component && npm run test:e2e",
+        "lint": "next lint",
+        "cy:open": "cypress open",
+        "db:see": "prisma studio",
+        "db:sync": "prisma db push",
+        "db:populate": "npm run db:sync && tsx src/app/utils/populate.ts"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.5.2",
+        "csv-parser": "^3.0.0",
+        "d3": "^7.8.5",
+        "next": "^13.5.6",
+        "proj4": "^2.9.2",
+        "react": "^18",
+        "react-dom": "^18",
+        "react-icons": "^4.11.0",
+        "tsx": "^4.2.0"
+    },
+    "devDependencies": {
+        "@types/d3": "^7.4.3",
+        "@types/geojson": "^7946.0.13",
+        "@types/node": "^20",
+        "@types/proj4": "^2.5.5",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "autoprefixer": "^10",
+        "cypress": "^13.4.0",
+        "eslint": "^8",
+        "eslint-config-next": "^13.0.0",
+        "postcss": "^8",
+        "prisma": "^5.5.2",
+        "sass": "^1.69.5",
+        "tailwindcss": "^3.3.5",
+        "typescript": "^5"
+    }
 }
