@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body>
         <div>
             <Navbar />
-            <main>
+            <main className="dark:bg-slate-900">
                 {children}
             </main>
             <Footer />

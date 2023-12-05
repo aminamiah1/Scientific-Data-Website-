@@ -22,8 +22,8 @@ const LoginCard = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white p-6">
-      <div className="w-full max-w-sm p-6 shadow-md rounded-lg bg-white text-center">
+    <div className="flex items-center justify-center min-h-screen bg-white p-6 dark:bg-slate-900">
+      <div className="w-full max-w-sm p-6 shadow-md rounded-lg bg-white text-center dark:bg-gray-300">
         <h2 className="text-2xl mb-6 text-gray-800">Admin Sign Up</h2>
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="relative mb-4">

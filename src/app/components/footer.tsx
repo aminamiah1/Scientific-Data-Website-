@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full mt-16 bg-gray-100 py-8">
+    <footer className="w-full  bg-gray-100 py-8 dark:bg-slate-600">
       <div className="max-w-screen-xl mx-auto px-10 md:px-32">
         <div className="flex justify-center items-center">
           <form className="relative container max-w-4xl bg-white bg-opacity-80 rounded-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-8 shadow-xl">

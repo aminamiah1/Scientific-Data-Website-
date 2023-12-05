@@ -3,14 +3,17 @@ import Image from 'next/image';
 export default function HeatDemand() {
     return (
         <>
-            <div className="my-8 max-w-screen-xl mx-auto px-10 md:px-32">
-                <div className="relative text-center">
-                    <h1 className="text-5xl font-bold relative z-10 inline-block title">
-                        <span className="relative z-10">TECHNOLOGICAL OPTIONS FOR LOW CARBON HEATING</span>
-                        <span className="absolute top-0 left-0 w-full h-full bg-green-300/50 -z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 80%)' }}></span>
-                    </h1>
-                </div>
-                <p className="text-lg subtitle mt-8">
+        
+            <div className="relative text-center">
+            <br/>
+            <br/>
+                <h1 className="text-5xl font-bold relative z-10 inline-block title">
+                    <span className="relative z-10 dark:text-gray-200">TECHNOLOGICAL OPTIONS FOR LOW CARBON HEATING</span>
+                    <span className="absolute top-0 left-0 w-full h-full bg-green-300/50 -z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 80%)' }}></span>
+                </h1>
+            </div>
+            <div className="my-8 mx-auto px-10 ">
+                <p className="text-lg subtitle dark:text-gray-200">
                     The pathways for heat decarbonisation focus on national-level changes and trends. These studies use national and regional energy models to suggest a mix of heating technologies for a given pathway and to calculate the impacts of these heating technologies on the energy system. <br />
                     The two heat decarbonisation pathways that have been identified are ‘electrification’ and ‘hydrogen’. In the ‘electrification’ pathway, heat demand is met mainly by air-source and ground-source heat pumps, and by resistive heating. 
                     In the ‘hydrogen’ pathway, heat demand is primarily met from hydrogen boilers. <br />
