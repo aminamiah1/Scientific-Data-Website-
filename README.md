@@ -166,39 +166,20 @@ And then you can attempt to run the `npm run db:populate` command again. If you 
 | `/admin/login`  | Login to the admin panel    | POST   | 200 (OK) or 401 (Unauthorized) |
 | `/admin/logout` | Logout from the admin panel | GET    | 200 (OK)                       |
 
-#### Breakdown Endpoints
+#### Admin Log In Steps
 
-| Endpoint                     | Description                                   | Method   | Status Code                 |
-| ---------------------------- | --------------------------------------------- | -------- | --------------------------- |
-| `/breakdown/heat/dwelling`   | Get/Post heat breakdown by dwelling type      | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/heat/tech`       | Get/Post heat breakdown by heating technology | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/heat/total`      | Get/Post total heat demand                    | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/energy/dwelling` | Get/Post energy breakdown by dwelling types   | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/energy/tech`     | Get/Post energy breakdown by technology       | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/energy/total`    | Get/Post total energy demand                  | GET/POST | 200 (OK) or 404 (Not Found) |
+KEY NOTES: 
+1. Make sure DATABASE_URL is correct.
+2. Make sure .env file is correct.
+3. Make sure to execute 'npm run db:sync' before attempting to use Prisma studio for the first time.
+4. Make sure you save your database after using prisma studio.
+5. for any errors: https://next-auth.js.org/errors 
 
-#### Half-Hourly Endpoints
-
-| Endpoint              | Description                      | Method   | Status Code                 |
-| --------------------- | -------------------------------- | -------- | --------------------------- |
-| `/half-hourly/energy` | Get/Post half-hourly energy data | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/half-hourly/gas`    | Get/Post half-hourly gas data    | GET/POST | 200 (OK) or 404 (Not Found) |
-
-#### Heat Demand Endpoint
-
-| Endpoint       | Description               | Method   | Status Code                 |
-| -------------- | ------------------------- | -------- | --------------------------- |
-| `/heat-demand` | Get/Post heat demand data | GET/POST | 200 (OK) or 404 (Not Found) |
-
-### API documentation
-
-#### Admin Endpoints
-
-| Endpoint        | Description                 | Method | Status Code                    |
-| --------------- | --------------------------- | ------ | ------------------------------ |
-| `/admin/login`  | Return login result         | GET    | 200 (OK) or 401 (Unauthorized) |
-| `/admin/login`  | Login to the admin panel    | POST   | 200 (OK) or 401 (Unauthorized) |
-| `/admin/logout` | Logout from the admin panel | GET    | 200 (OK)                       |
+STEPS: 
+1. Add values into .env file
+2. Run 'npx prisma studio' into terminal to add your email - just id, name and email.
+3. Run npm run dev then go to endpoint.
+4. input email, check inbox for the magic link, click and you're in :)
 
 #### Breakdown Endpoints
 

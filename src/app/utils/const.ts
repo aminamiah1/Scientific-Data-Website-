@@ -1,6 +1,8 @@
 import { Prisma } from "@prisma/client";
 import path from "path";
 
+export const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 /**
  * Directory paths
  */
@@ -205,4 +207,8 @@ export const FIELDS: FieldMapping = {
     HHPoHT: {},
     AHDLSOA: {},
     EEICLA: {},
+    Account: {},
+    Session: {},
+    User: {},
+    VerificationToken: {},
 };
