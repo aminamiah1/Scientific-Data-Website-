@@ -1,10 +1,14 @@
 # Table of Contents
 
+# Table of Contents
+
 -   [Table of Contents](#table-of-contents)
+-   [Table of Contents](#table-of-contents-1)
 -   [Getting Started](#getting-started)
     -   [CI/CD](#cicd)
     -   [Cypress](#cypress)
         -   [Useful Commands](#useful-commands)
+        -   [Custom Commands](#custom-commands)
     -   [Prisma](#prisma)
         -   [Initial setup](#initial-setup)
         -   [API documentation](#api-documentation)
@@ -12,10 +16,17 @@
             -   [Breakdown Endpoints](#breakdown-endpoints)
             -   [Half-Hourly Endpoints](#half-hourly-endpoints)
             -   [Heat Demand Endpoint](#heat-demand-endpoint)
+        -   [API documentation](#api-documentation-1)
+            -   [Admin Endpoints](#admin-endpoints-1)
+            -   [Breakdown Endpoints](#breakdown-endpoints-1)
+            -   [Half-Hourly Endpoints](#half-hourly-endpoints-1)
+            -   [Heat Demand Endpoint](#heat-demand-endpoint-1)
         -   [Useful Commands](#useful-commands-1)
         -   [Using data in the application](#using-data-in-the-application)
         -   [TODOs](#todos)
--   [Contributing](#contributing)
+-   [\<\<\<\<\<\<\< HEAD](#-head)
+-   [Learn More](#learn-more)
+-   [Deploy on Vercel](#deploy-on-vercel)
 
 # Getting Started
 
@@ -24,6 +35,8 @@ To install all dependencies, run:
 ```bash
 npm i
 ```
+
+If this is your first time cloning the application, or you haven't yet populated the database with some research and spatial data, see [this section](#initial-setup) to get started on preparing your database.
 
 To see the application in its current state, run:
 
@@ -39,9 +52,9 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 The CI/CD job rules are as follows:
 
--   Build job
+-   build job
     -   Run on every push
--   e2e test job
+-   cypress test job
     -   Run on every push
     -   If it's a merge, then it will record the test run and upload it to the cloud
 
@@ -55,15 +68,52 @@ npm run cy:open
 
 ### Useful Commands
 
-To start running all the end-to-end tests, you can use the following command:
+Currently, three different test commands exist;
 
 ```bash
-npm run e2e
+npm run test:api
+npm run test:component
+npm run test:e2e
+```
+
+And to run all three at once, you can execute:
+
+```bash
+npm run test:all
+```
+
+If you plan to add any different paths for whatever reason in the `cypress` folder, be sure to update the `.gitlab-ci.yml` and `npm run test:all` script in `package.json` as well with the updated tests so that we know all tests are running.
+
+### Custom Commands
+
+To select an HTML Element for testing specifically for Cypress, use `data-cy`.
+
+Example:
+
+```tsx
+<h2 data-cy="main-page-title">Title</h2>
+```
+
+Then in the Cypress test file, to select the Element, use:
+
+```tsx
+cy.getByTestId("main-page-title"). ... ;
 ```
 
 ## Prisma
 
-Although Prisma's DB protocol says `mysql`, it's supported by MariaDB.
+Although Prisma's DB protocol says `mysql`, it's supported by MariaDB, as [seen here](https://www.prisma.io/stack).
+
+An important thing to note is that we're attempting to follow a singleton design pattern. If you require access to the database, you can access the Prisma Client via:
+
+```ts
+import { db } from "@/app/utils/data";
+
+// ... do stuff
+// e.g. db.$disconnect();
+```
+
+This has been encouraged through [best practises in a dev environment](https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices) and [working with multiple client instances](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/instantiate-prisma-client).
 
 ### Initial setup
 
@@ -89,6 +139,23 @@ This can be achieved with:
 CREATE SCHEMA group6;
 ```
 
+You want to populate all data before running the application for the first time. This process can take a while (up to 15 minutes).
+
+You can run the following command to start this population process:
+
+```bash
+npm run db:populate
+```
+
+If you wish to start over, you can start anew with:
+
+```sql
+DROP SCHEMA group6;
+CREATE SCHEMA group6;
+```
+
+And then you can attempt to run the `npm run db:populate` command again. If you run into any issues with this population process, please [open a new issue](https://git.cardiff.ac.uk/c1833364/y3-group-6-team-project/-/issues/new).
+
 ### API documentation
 
 #### Admin Endpoints
@@ -98,6 +165,21 @@ CREATE SCHEMA group6;
 | `/admin/login`  | Return login result         | GET    | 200 (OK) or 401 (Unauthorized) |
 | `/admin/login`  | Login to the admin panel    | POST   | 200 (OK) or 401 (Unauthorized) |
 | `/admin/logout` | Logout from the admin panel | GET    | 200 (OK)                       |
+
+#### Admin Log In Steps
+
+KEY NOTES: 
+1. Make sure DATABASE_URL is correct.
+2. Make sure .env file is correct.
+3. Make sure to execute 'npm run db:sync' before attempting to use Prisma studio for the first time.
+4. Make sure you save your database after using prisma studio.
+5. for any errors: https://next-auth.js.org/errors 
+
+STEPS: 
+1. Add values into .env file
+2. Run 'npx prisma studio' into terminal to add your email - just id, name and email.
+3. Run npm run dev then go to endpoint.
+4. input email, check inbox for the magic link, click and you're in :)
 
 #### Breakdown Endpoints
 
@@ -154,7 +236,24 @@ To interact with the Prisma Client, see [this guide](https://www.prisma.io/docs/
 ### TODOs
 
 -   [ ] Look into [DB Migrations](https://www.prisma.io/migrate) in prod
+-   [ ] Load _all_ CSV files automatically from the research folder, not just a select few
+    -   This is required in order to support future dataset uploads.
 
-# Contributing
+# <<<<<<< HEAD
 
-When wanting to implement a new feature, create a new issue with the `User Story` template. Fill out the fields, and then create a `feature/*` branch off of the current week's release branch.
+# Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+# Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+> > > > > > > origin/release-2
