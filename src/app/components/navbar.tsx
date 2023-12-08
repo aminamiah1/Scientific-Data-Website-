@@ -60,7 +60,7 @@ const Navbar = () => {
         <DarkModeToggle />
       </div>
           <div className="relative">
-          <Link href="/admin/sign-in">
+          <Link href="/api/auth/signin">
               <CgProfile className="text-2xl text-gray-800 cursor-pointer hover:text-blue-600 dark:hover:text-green-400" />
             </Link>
           </div>

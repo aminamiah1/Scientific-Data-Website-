@@ -46,6 +46,14 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+  pages: {
+    signIn: "/admin/sign-in",
+  },
+  theme: {
+    colorScheme: "light",
+    logo: "/images/logo.png",
+    //   brandColor: "#006700"
+  },
 };
 
 const handler = NextAuth(authOptions);
