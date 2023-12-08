@@ -1,6 +1,6 @@
 describe("Authentication", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/api/auth/signin");
+    cy.visit("http://localhost:3000/admin/sign-in");
   });
 
   it("should display a error message after submitting an email", () => {
