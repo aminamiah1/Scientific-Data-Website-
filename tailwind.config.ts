@@ -12,8 +12,8 @@ const config: Config = {
       backgroundImage: {
         'banner-bg': "url('/images/bannerBg.jpg')",
         'contact-bg': "url('/images/worldMap.jpg')",
-        'navimage-bg': "url('/images/banner.jpg')",
-        'hand-bg': "url('/images/hand.png')"
+        'navimage-bg': "url('/images/banner_tran.png')",
+        'hand-bg': "url('/images/hand_tran.png')"
       },
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
