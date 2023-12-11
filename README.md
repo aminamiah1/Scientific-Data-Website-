@@ -24,7 +24,6 @@
         -   [Useful Commands](#useful-commands-1)
         -   [Using data in the application](#using-data-in-the-application)
         -   [TODOs](#todos)
--   [\<\<\<\<\<\<\< HEAD](#-head)
 -   [Learn More](#learn-more)
 -   [Deploy on Vercel](#deploy-on-vercel)
 
@@ -60,7 +59,7 @@ The CI/CD job rules are as follows:
 
 ## Cypress
 
-To start using the Cypress framework, run:
+To start using the Cypress GUI, run:
 
 ```bash
 npm run cy:open
@@ -156,6 +155,48 @@ CREATE SCHEMA group6;
 
 And then you can attempt to run the `npm run db:populate` command again. If you run into any issues with this population process, please [open a new issue](https://git.cardiff.ac.uk/c1833364/y3-group-6-team-project/-/issues/new).
 
+### Backend
+Run `npx tsx .\src\app\utils\main.ts` to start the NodeJS server. The PORT number is 4001
+
+### API documentation
+
+#### Map endpoints
+| Endpoint        | Description                 | Method | Status Code                    |
+| --------------- | --------------------------- | ------ | ------------------------------ |
+| `/api/svg`      | Return map SVG data         | GET    | 200 (OK)                       |
+
+#### Admin Endpoints
+
+| Endpoint        | Description                 | Method | Status Code                    |
+| --------------- | --------------------------- | ------ | ------------------------------ |
+| `/admin/login`  | Return login result         | GET    | 200 (OK) or 401 (Unauthorized) |
+| `/admin/login`  | Login to the admin panel    | POST   | 200 (OK) or 401 (Unauthorized) |
+| `/admin/logout` | Logout from the admin panel | GET    | 200 (OK)                       |
+
+#### Breakdown Endpoints
+
+| Endpoint                     | Description                                   | Method   | Status Code                 |
+| ---------------------------- | --------------------------------------------- | -------- | --------------------------- |
+| `/breakdown/heat/dwelling`   | Get/Post heat breakdown by dwelling type      | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/heat/tech`       | Get/Post heat breakdown by heating technology | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/heat/total`      | Get/Post total heat demand                    | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/energy/dwelling` | Get/Post energy breakdown by dwelling types   | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/energy/tech`     | Get/Post energy breakdown by technology       | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/energy/total`    | Get/Post total energy demand                  | GET/POST | 200 (OK) or 404 (Not Found) |
+
+#### Half-Hourly Endpoints
+
+| Endpoint              | Description                      | Method   | Status Code                 |
+| --------------------- | -------------------------------- | -------- | --------------------------- |
+| `/half-hourly/energy` | Get/Post half-hourly energy data | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/half-hourly/gas`    | Get/Post half-hourly gas data    | GET/POST | 200 (OK) or 404 (Not Found) |
+
+#### Heat Demand Endpoint
+
+| Endpoint       | Description               | Method   | Status Code                 |
+| -------------- | ------------------------- | -------- | --------------------------- |
+| `/heat-demand` | Get/Post heat demand data | GET/POST | 200 (OK) or 404 (Not Found) |
+
 ### API documentation
 
 #### Admin Endpoints
@@ -239,8 +280,6 @@ To interact with the Prisma Client, see [this guide](https://www.prisma.io/docs/
 -   [ ] Load _all_ CSV files automatically from the research folder, not just a select few
     -   This is required in order to support future dataset uploads.
 
-# <<<<<<< HEAD
-
 # Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -255,5 +294,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-> > > > > > > origin/release-2

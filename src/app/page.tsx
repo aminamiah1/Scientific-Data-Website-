@@ -8,7 +8,7 @@ export default function Home() {
         </div>
         <div className="">
           <div className="relative text-center">
-          
+
             <h1 className="text-5xl font-bold relative z-10 inline-block dark:text-gray-200">
               <span className="relative space-y-5 z-10">ABSTRACT</span>
               <span className="absolute top-0 left-0 w-full h-full bg-green-300/50 -z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 80%)' }}></span>
@@ -51,34 +51,34 @@ export default function Home() {
         <p>WHAT ARE THE SUITABLE TECHNOLOGICAL OPTIONS FOR HEAT DECARBONISATION?</p>
         <p>WHAT ARE THE IMPACTS OF VARIOUS HEAT DECARBONISATION PATHWAYS ON THE LOCAL AND NATIONAL ENERGY SUPPLY INFRASTRUCTURE?</p>
       </div>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-10 md:px-32">
         <div className="figureTextCustom bg-pink ">
           <h1 className="title ">#1</h1>
           <p> Decarbonising heat is a major challenge facing UK energy policy. In 2018, residential space heating and hot water were responsible for 394 TWh of the final energy consumption of the UK.</p>
           <hr className="lineBreakFigureText"></hr>
-          <br/>
+          <br />
         </div>
         <div className="figureTextCustom bg-yellow">
           <h1 className="title ">#2</h1>
           <p>  This is approximately 41% of total UK final energy consumption across all sectors (excluding transport). This is the equivalent of more than 78 MtCO2e (calculated using carbon emissions factors.</p>
           <hr className="lineBreakFigureText"></hr>
-          <br/>
+          <br />
         </div>
         <div className="figureTextCustom bg-bleu ">
           <h1 className="title ">#3</h1>
           <p> Currently, residential heating in the UK is mostly reliant on natural gas. In 2018, 302 TWh of natural gas was consumed for space heating and hot water.</p>
           <hr className="lineBreakFigureText"></hr>
-          <br/>
+          <br />
         </div>
         <div className="figureTextCustom bg-purple ">
           <h1 className="title ">#4</h1>
           <p> To achieve its net-zero target by 2050, the UK residential heat sector is expected to undergo a radical change to significantly increase the installation of heat pumps and hydrogen boilers.</p>
           <hr className="lineBreakFigureText"></hr>
-          <br/>
+          <br />
         </div>
-        <br/>
+        <br />
       </div>
     </>
   );

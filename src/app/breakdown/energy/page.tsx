@@ -4,4 +4,4 @@ export default function BreakdownEnergy() {
             <h1>Energy content</h1>
         </>
     );
-}
+};
