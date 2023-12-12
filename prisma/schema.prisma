@@ -256,5 +256,3 @@ model EEICLA {
 //   country Country @relation(fields: [ctryId], references: [id])
 //   Region  Region?
 // }
-
-
