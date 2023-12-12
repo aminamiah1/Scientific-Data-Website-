@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { emailRegex } from '../../const';
+import { emailRegex } from "@/app/utils/const";
 import { IoPersonCircle, IoLockClosed } from "react-icons/io5";
 
 const LoginCard = () => {
