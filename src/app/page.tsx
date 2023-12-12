@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <div className=" max-w-screen-xl mx-auto px-10 md:px-32">
+      <div className=" max-w-screen-xl mx-auto px-10">
         <br />
         <div className="md:float-right md:ml-6 ">
           <div className="h-96 w-96 bg-navimage-bg bg-cover bg-center" />
@@ -22,8 +22,8 @@ export default function Home() {
       <div className="my-8 px-10 md:px-32 montserrat-font">
         <div className="my-6">
         </div>
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full mb-4 bg-gray-100 shadow-md rounded-lg dark:bg-slate-500">
+        <div className="overflow-x-auto flex justify-center items-center">
+          <table className="table-auto max-w-screen-xl mb-4 bg-gray-100 shadow-md rounded-lg dark:bg-slate-500">
             <tbody className="divide-y divide-gray-300 ">
               <tr>
                 <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 bg-gray-200 dark:text-gray-200 dark:bg-slate-600">Measurement(s)</th>
@@ -46,7 +46,7 @@ export default function Home() {
         </div>
         <hr className="my-4"></hr>
       </div>
-      <h1 className="text-4xl font-bold my-8 px-10 md:px-32 title dark:text-gray-200">BACKGROUND + SUMMARY</h1>
+      <h1 className="text-4xl font-bold my-8 px-10 md:px-32 title dark:text-gray-200 ">BACKGROUND + SUMMARY</h1>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-10 md:px-32 subtitle dark:text-gray-200">
         <p>WHAT ARE THE SUITABLE TECHNOLOGICAL OPTIONS FOR HEAT DECARBONISATION?</p>
         <p>WHAT ARE THE IMPACTS OF VARIOUS HEAT DECARBONISATION PATHWAYS ON THE LOCAL AND NATIONAL ENERGY SUPPLY INFRASTRUCTURE?</p>

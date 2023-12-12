@@ -1,11 +1,29 @@
-import React from 'react';
+"use client"
+import React from 'next/head';
 
 const Footer: React.FC = () => {
+  async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const formData: { [key: string]: string } = {};
+
+    Array.from(e.currentTarget.elements).forEach((field) => {
+      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
+        if (!field.name) return;
+        formData[field.name] = field.value;
+      }
+    });
+    await fetch('/api/mail', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+    });
+  }
+  
   return (
     <footer className="w-full  bg-gray-100 py-8 dark:bg-slate-600">
       <div className="max-w-screen-xl mx-auto px-10 md:px-32">
         <div className="flex justify-center items-center">
-          <form className="relative container max-w-4xl bg-white bg-opacity-80 rounded-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-8 shadow-xl">
+          <form onSubmit={handleOnSubmit} className="relative container max-w-4xl bg-white bg-opacity-80 rounded-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-8 shadow-xl">
             <div className="col-span-2">
               <h2 className="text-2xl font-bold text-center mb-6">Contact Us!</h2>
           </div>
