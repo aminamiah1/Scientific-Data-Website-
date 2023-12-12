@@ -18,6 +18,7 @@ export default function SignIn() {
     <div className="flex justify-center items-center h-screen">
       <div className="p-6 max-w-sm w-full bg-white rounded-lg border border-gray-200 shadow-md">
         <form
+          id="admin-login-form"
           method="post"
           action="/api/auth/signin/email"
           className="flex flex-col gap-4"
