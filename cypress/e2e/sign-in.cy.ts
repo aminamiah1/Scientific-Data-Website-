@@ -11,7 +11,7 @@ describe("Admin Sign-In", () => {
     cy.get("#email")
       .type("wronguser@gmail.com")
       .then(() => {
-        cy.get("#adminSubmit").click();
+        cy.get("#admin-login-form").submit();
       });
     cy.url().should(
       "equal",
