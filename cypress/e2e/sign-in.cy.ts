@@ -13,6 +13,7 @@ describe("Admin Sign-In", () => {
       .then(() => {
         cy.get("#admin-login-form").submit();
       });
+    cy.url().should("include", "/api/auth");
     cy.url().should(
       "equal",
       "http://localhost:3000/api/auth/error?error=AccessDenied"
