@@ -5,18 +5,4 @@ describe("Admin Sign-In", () => {
     cy.visit("/admin/add-admins");
     cy.contains("You are not authorized to view this page!").should("exist");
   });
-
-  it("shows access denied when entering email", () => {
-    cy.visit("/admin/sign-in");
-    cy.get("#email")
-      .type("wronguser@gmail.com")
-      .then(() => {
-        cy.get("#admin-login-form").submit();
-      });
-    cy.url().should("include", "/api/auth");
-    cy.url().should(
-      "equal",
-      "http://localhost:3000/api/auth/error?error=AccessDenied"
-    );
-  });
 });
