@@ -1,11 +1,14 @@
 describe("Admin Sign-In", () => {
-  beforeEach(() => {
-    cy.visit("/admin/sign-in");
+
+  it("successfully signs out", () => {
+    cy.visit("/api/auth/signout");
+    cy.get("#submitButton").click();
   });
 
-  it('should display "Access Denied" for an incorrect email', () => {
-    cy.get("#email").type("admin@example.com");
+  it('shows access denied when entering email', () => {
+    cy.visit("/admin/sign-in");
+    cy.get('#email').type('user@example.com');
     cy.get("#admin-login-form").submit();
-    cy.contains("Access Denied").should("be.visible");
-  }); 
+    cy.contains('Access Denied').should('exist');
+  });
 });

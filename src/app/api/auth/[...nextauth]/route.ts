@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     async redirect({ url, baseUrl }) {
-      return baseUrl + "/admin/dashboard";
+      return baseUrl;
     },
     async jwt({ token, user }) {
       if (user && user.role === "admin") {
