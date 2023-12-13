@@ -7,16 +7,24 @@ describe("Admin Sign-In", () => {
     cy.contains("You are not authorized to view this page!").should("exist");
   });
 
-  it("shows access denied when entering email", () => {
-    cy.visit("/admin/sign-in");
-    cy.get("#email")
-      .type("wronguser@gmail.com")
-      .then(() => {
-        cy.get('#adminSubmit').click();
+  it("shows access denied when using incorrect email via API", () => {
+    cy.request("GET", "/api/auth/csrf").then((response) => {
+      const csrfToken = response.body.csrfToken;
+      cy.request({
+        method: "POST",
+        url: "/api/auth/signin/email",
+        followRedirect: false,
+        failOnStatusCode: false,
+        body: {
+          email: "wronguser@gmail.com",
+          csrfToken: csrfToken,
+        },
+      }).then((postResponse) => {
+        const location = Array.isArray(postResponse.headers.location)
+          ? postResponse.headers.location[0]
+          : postResponse.headers.location;
+        expect(location).to.include("/api/auth/error?error=AccessDenied");
       });
-    cy.url().should(
-      "equal",
-      "http://localhost:3000/api/auth/error?error=AccessDenied"
-    );
+    });
   });
 });
