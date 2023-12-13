@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
               <input
                 id="frm-email"
                 type="email"
-                name="email"
+                name="frm-email"
                 autoComplete="email"
                 required
                 placeholder="Email"

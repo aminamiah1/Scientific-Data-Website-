@@ -11,8 +11,8 @@ describe("Add Admin Form", () => {
   });
 
   it("allows an admin to add another admin", () => {
-    cy.get('input[name="name"]').eq(0).type("New"); 
-    cy.get('input[name="email"]').eq(1).type("newadmin@example.com"); 
+    cy.get('#name').type("New"); 
+    cy.get('#email').type("newadmin@example.com"); 
     cy.intercept("POST", "/api/admin/add-admins", {
       statusCode: 200,
       body: { name: "New", email: "newadmin@example.com", role: "ADMIN" },
