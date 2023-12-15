@@ -17,6 +17,10 @@ export const db = globalThis.db ?? prismaClientSingleton();
 
 if (process.env.NODE_ENV !== "production") globalThis.db = db;
 
+export const extractKeysToArray = (dataset: Object[]) => {
+    return [Object.keys(dataset[0]), ...dataset.map(Object.values)];
+};
+
 // For generalised rules (see mappings in utils/const.ts)
 const getSegments = (column: string) => {
     let segments: string[] = [];
