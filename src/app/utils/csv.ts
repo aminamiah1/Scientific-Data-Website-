@@ -11,7 +11,6 @@ import {
     db as prisma,
 } from "./data";
 import { CSV, FIELDS, SERVER_SIDE } from "./const";
-import path from "path";
 
 function defaultLoadOnEnd(rows: Object[], model: Prisma.ModelName) {
     return async () => {

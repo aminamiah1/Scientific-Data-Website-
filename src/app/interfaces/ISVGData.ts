@@ -1,4 +1,5 @@
-import { FeatureCollection, Geometry, GeoJsonGeometryTypes } from 'geojson';
+import { FeatureCollection, Geometry, GeoJsonGeometryTypes, Feature } from 'geojson';
 export interface ISVGData {
+    features: Feature;
     svgData: FeatureCollection<Geometry, GeoJsonGeometryTypes>;
 }
