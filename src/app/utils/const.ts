@@ -212,3 +212,35 @@ export const FIELDS: FieldMapping = {
     User: {},
     VerificationToken: {},
 };
+
+export const readFileContent = async (file: File): Promise<string | ArrayBuffer> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.result) {
+        resolve(reader.result);
+      } else {
+        reject(new Error('Failed to read file.'));
+      }
+    }
+
+    reader.onerror = () => {
+      reject(new Error('Error reading file.'));
+    }
+
+    reader.readAsText(file);
+  });
+}
+
+export const getFormattedCSVData = async (file: File) => {
+  const fileContent = await readFileContent(file);
+  const formattedCSV = fileContent
+    ?.toString()
+    .replaceAll('"', '')
+    .replaceAll('\r', '')
+    .split(',')
+    .flatMap(i => i.split('\n'));
+
+  return formattedCSV;
+}

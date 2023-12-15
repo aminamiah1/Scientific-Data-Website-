@@ -11,6 +11,7 @@ export default defineConfig({
   },
 
   component: {
+    specPattern: "cypress/{component,api}/*.{cy,spec}.{js,jsx,ts,tsx}",
     devServer: {
       framework: "next",
       bundler: "webpack",

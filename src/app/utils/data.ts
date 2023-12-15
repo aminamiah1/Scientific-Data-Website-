@@ -187,13 +187,20 @@ const isDifferentFieldName = (
     return getDifferentFieldName(fieldName, model, searchByValue) !== undefined;
 };
 
-export const prepareCSVData = (data: ICSVRow, model: Prisma.ModelName) => {
+export const prepareCSVData = (
+    data: ICSVRow,
+    model: Prisma.ModelName,
+    searchForFieldName: boolean = true
+) => {
     const preparedData: any = {};
 
     for (const [col, value] of Object.entries(data)) {
-        const fieldName = isDifferentFieldName(col, model, true)
+        let fieldName = col;
+        if (searchForFieldName) {
+            fieldName = isDifferentFieldName(col, model, true)
             ? getDifferentFieldName(col, model, true)
             : getSensitisedFieldName(col, model);
+        }
 
         preparedData[fieldName] = prepareValue(value, fieldName, model);
     }

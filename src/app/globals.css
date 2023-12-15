@@ -29,6 +29,10 @@ body, .montserrat-font {
   }
 }
 
+input[type="file"]::file-selector-button {
+  @apply bg-blue-500 hover:bg-blue-700 hover:cursor-pointer dark:bg-green-400 dark:hover:bg-green-600 px-4 py-1 text-white rounded border-none;
+}
+
 .title {
   @apply text-[25px] ml-4 font-montserrat font-bold;
 }
@@ -71,5 +75,15 @@ body, .montserrat-font {
   @apply px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-bleu hover:bg-bleu md:py-3 md:text-lg md:px-8;
 }
 
+.spinner {
+  animation: spinner 1s linear infinite;
+}
 
-
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
