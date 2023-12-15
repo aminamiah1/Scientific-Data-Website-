@@ -8,7 +8,7 @@
     "start": "next start",
     "test:api": "cypress run --component --spec \"cypress/api/*.cy.ts\"",
     "test:component": "cypress run --component --spec \"cypress/component/*.cy.ts\"",
-    "test:e2e": "cypress run",
+    "test:e2e": "cypress run --spec \"cypress/e2e/*.cy.ts\"",
     "test:all": "npm run test:api && npm run test:component && npm run test:e2e",
     "lint": "next lint",
     "cy:open": "cypress open",
