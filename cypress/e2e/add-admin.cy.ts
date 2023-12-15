@@ -11,13 +11,13 @@ describe("Add Admin Form", () => {
   });
 
   it("allows an admin to add another admin", () => {
-    cy.get('input[name="name"]').eq(0).type("New"); 
-    cy.get('input[name="email"]').eq(1).type("newadmin@example.com"); 
+    cy.get('[data-cy="name"]').type("New"); 
+    cy.get('[data-cy="email"]').type("newadmin@example.com"); 
     cy.intercept("POST", "/api/admin/add-admins", {
       statusCode: 200,
       body: { name: "New", email: "newadmin@example.com", role: "ADMIN" },
     }).as("addAdmin");
-    cy.get("#add-admin-form").submit();
+    cy.get('[data-cy="addForm"]').submit();
     cy.wait("@addAdmin").its("response.statusCode").should("eq", 200);
     cy.on("window:alert", (str) => {
       expect(str).to.equal(`Admin added successfully`);
