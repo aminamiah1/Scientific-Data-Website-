@@ -2,4 +2,8 @@ import { FeatureCollection, Geometry, GeoJsonGeometryTypes, Feature } from 'geoj
 export interface ISVGData {
     features: Feature;
     svgData: FeatureCollection<Geometry, GeoJsonGeometryTypes>;
-}
+    densityRange: {
+        max: number,
+        min: number
+    };
+};

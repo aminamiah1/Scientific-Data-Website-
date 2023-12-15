@@ -8,7 +8,7 @@ import { ISVGData } from '@/app/interfaces/ISVGData';
 import { Feature } from 'geojson';
 
 export const NationMap = ({ svgData }: ISVGData): ReactNode => {
-
+    const range = [svgData.densityRange.min, svgData.densityRange.max];
     useEffect(() => {
         const map = L.map('map').setView([52.56, -1.47], 6);
 
@@ -34,7 +34,7 @@ export const NationMap = ({ svgData }: ISVGData): ReactNode => {
         };
 
         let geojson = L.geoJson(svgData, {
-            style: getMapStyles,
+            style: (feature) => getMapStyles(feature, range),
             onEachFeature: onEachFeature
         }).addTo(map);
 

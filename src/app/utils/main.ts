@@ -40,6 +40,12 @@ const getLADdata = async (): Promise<void> => {
             GROUP BY l.districtId;`
         );
 
+        const densityArray = densityData.map(item => item.densityData);
+
+        svgJson.svgData['densityRange'] = {
+            'max': Math.max(...densityArray),
+            'min': Math.min(...densityArray)
+        }
         const densityDataMap: { [key: string]: number } = {};
         densityData.forEach((data: IDensityData) => {
             densityDataMap[data.lad19cd] = data.densityData;
