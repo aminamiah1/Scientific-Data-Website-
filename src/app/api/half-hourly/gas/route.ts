@@ -16,7 +16,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       UKDailyAverageOAT: true,
     },
   });
- 
+
   return NextResponse.json(dataToReturn, { status: 200 });
 }
 
