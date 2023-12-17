@@ -1,28 +1,7 @@
 stages:
     - build
     - connect
-    - connect
     - test
-
-variables:
-    MYSQL_DATABASE: group6
-    MYSQL_ROOT_PASSWORD: $DATABASE_PASSWORD
-
-connect:
-    stage: connect
-    image: mysql:8.2.0
-    services:
-        - mysql:8.2.0
-    script:
-        - mysql --version
-        - echo "Checking MySQL Service Status..."
-        - |
-            for i in {1..10}; do
-              mysqladmin ping -h"mysql" --silent && break
-              echo "Waiting for MySQL server, attempt $i..."
-              sleep 5
-            done
-        - echo "SELECT 'OK';" | mysql --host=mysql --user=root --password="$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE"
 
 variables:
     MYSQL_DATABASE: group6
@@ -54,8 +33,6 @@ build-job:
     stage: build
     services:
         - mysql:8.2.0
-    services:
-        - mysql:8.2.0
     rules:
         - if: $CI_PIPELINE_SOURCE == "push"
     image: node:20
@@ -70,15 +47,12 @@ build-job:
         expire_in: "30 days"
 
 cypress:
-cypress:
     stage: test
     needs: ["build-job"]
     # Defining variables at this level so that they have the ability
     # to be overridden further into the job level:
     # https://docs.gitlab.com/ee/ci/variables/index.html#cicd-variable-precedence
     # and https://docs.gitlab.com/ee/ci/yaml/#workflowrulesvariables
-    services:
-        - mysql:8.2.0
     services:
         - mysql:8.2.0
     variables:
@@ -90,13 +64,15 @@ cypress:
         # Prevent test running on merge request refs
         - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_SLUG =~ /refs\/.*/
           when: never
-        # Run the test with npm run test:e2e if it was pushed to a branch and it wasn't a merge commit
+
         # Run the test with npm run test:e2e if it was pushed to a branch and it wasn't a merge commit
         - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_SLUG !~ /refs\/.*/ && $CI_COMMIT_MESSAGE !~ /Merge branch.*/
+
         # Run the test with record key if it was pushed to a branch and it was a merge commit
         - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_SLUG !~ /refs\/.*/ && $CI_COMMIT_MESSAGE =~ /Merge branch.*/
+
           variables:
-              TEST_CMD: 'npx cypress run --spec "cypress/component/*.cy.ts,cypress/api/*.cy.ts" --record --key $CYPRESS_RECORD_KEY && npx cypress run --record --key $CYPRESS_RECORD_KEY'
+              TEST_CMD: 'npx cypress run --component --spec "cypress/component/*.cy.ts,cypress/api/*.cy.ts" --record --key $CYPRESS_RECORD_KEY && npx cypress run --record --key $CYPRESS_RECORD_KEY'
               TEST_SECRET: $NEXTAUTH_SECRET
               TEST_AUTH: $NEXTAUTH_URL
               SQL_URL: $DATABASE_URL
@@ -112,7 +88,7 @@ cypress:
         - npm ci --cache .npm --prefer-offline
         - npx tsx ./src/app/utils/main.ts &
         - npm start &
-        - sleep 10 
+        - sleep 10
         - npx cypress run --record --key $CYPRESS_RECORD_KEY
         - $TEST_CMD
         #- $TEST_SECRET
