@@ -1,7 +1,8 @@
+import { ICSVRow } from "@/app/interfaces/ICSVRow";
 import { Prisma } from "@prisma/client";
 import csv from "csv-parser";
 import fs from "fs";
-import { ICSVRow } from "../interfaces/ICSVRow";
+import { CSV, FIELDS } from "./const";
 import { lowerCaseFirstLetter } from "./conversions";
 import {
     csvColumnToModelField,
@@ -10,8 +11,6 @@ import {
     prepareCSVData,
     db as prisma,
 } from "./data";
-import { CSV, FIELDS, SERVER_SIDE } from "./const";
-import path from "path";
 
 function defaultLoadOnEnd(
     rows: Object[],
@@ -94,7 +93,7 @@ async function loadCSV(
                         columns.push(
                             ...csvHeaders.map((x) => {
                                 const modelField = x;
-                                FIELDS[model][modelField] = x;
+                                FIELDS[model]![modelField] = x;
                                 return modelField;
                             })
                         );
@@ -214,15 +213,10 @@ export const loadEEICLA = async (
     filename: string = CSV.RESEARCH.EEIC
 ) => {
     const isResearch = true;
-    await loadCSV(
-        filename,
-        "EEICLA",
-        isResearch,
-        (rows, model) => async () => {
-            await defaultLoadOnEnd(rows, model, isResearch)();
-            if (afterEnd) await afterEnd();
-        }
-    );
+    await loadCSV(filename, "EEICLA", isResearch, (rows, model) => async () => {
+        await defaultLoadOnEnd(rows, model, isResearch)();
+        if (afterEnd) await afterEnd();
+    });
 };
 
 export const loadHHPoHT = async (
@@ -230,15 +224,10 @@ export const loadHHPoHT = async (
     filename: string = CSV.RESEARCH.HHPoHT
 ) => {
     const isResearch = true;
-    await loadCSV(
-        filename,
-        "HHPoHT",
-        isResearch,
-        (rows, model) => async () => {
-            await defaultLoadOnEnd(rows, model, isResearch)();
-            if (afterEnd) await afterEnd();
-        }
-    );
+    await loadCSV(filename, "HHPoHT", isResearch, (rows, model) => async () => {
+        await defaultLoadOnEnd(rows, model, isResearch)();
+        if (afterEnd) await afterEnd();
+    });
 };
 
 // loadCSV(path.join(SERVER_SIDE, CSV.RESEARCH.HHPoHT), "AHDLSOA");
