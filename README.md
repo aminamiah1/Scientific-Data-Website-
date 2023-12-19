@@ -232,10 +232,13 @@ STEPS:
 
 ### Half-Hourly Endpoints
 
-| Endpoint              | Description                      | Method   | Status Code                 |
-| --------------------- | -------------------------------- | -------- | --------------------------- |
-| `/half-hourly/energy` | Get/Post half-hourly energy data | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/half-hourly/gas`    | Get/Post half-hourly gas data    | GET/POST | 200 (OK) or 404 (Not Found) |
+| Endpoint              | Description                                  | Method   | Status Code                 |
+| --------------------- | -------------------------------------------- | -------- | --------------------------- |
+| `/half-hourly/energy` | Get/Post half-hourly energy data             | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/half-hourly/gas`    | Get/Post half-hourly gas data                | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/half-hourly/oat`    | Get half-hourly outside air temperature data | GET      | 200 (OK)                    |
+
+`/half-hourly/oat` has a required parameter `resolution`, which can either be `daily` or `half-hourly`. E.g. `http://localhost:3000/api/half-hourly/oat?resolution=daily`
 
 ### Heat Demand Endpoint
 

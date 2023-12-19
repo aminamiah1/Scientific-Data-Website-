@@ -30,7 +30,7 @@ describe("Chart is correctly displaying", () => {
         let NUM_OF_DATAPOINTS: number;
         cy.getByTestId("resolution-switch").click();
 
-        cy.wait(5000);
+        cy.wait(7000);
 
         cy.document()
             .should("exist")
@@ -45,5 +45,13 @@ describe("Chart is correctly displaying", () => {
                 NUM_OF_DATAPOINTS + NUM_OF_METADATA_ENTRIES
             );
         });
+    });
+
+    it("Disables the switch after changing resolution", () => {
+        cy.document()
+            .should("exist")
+            .getByTestId("resolution-switch")
+            .click()
+            .should("be.disabled");
     });
 });
