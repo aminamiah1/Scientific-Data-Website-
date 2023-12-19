@@ -272,9 +272,8 @@ export default function Visualise({ initialData }: { initialData: DataSet }) {
                     data-cy="resolution-switch"
                     checked={resolution === "daily"}
                     onChange={toggleResolution}
-                    className={`${
-                        resolution === "daily" ? "bg-blue-600" : "bg-gray-200"
-                    } relative inline-flex items-center dark:text-white h-6 rounded-full w-11`}
+                    disabled={!finishRender}
+                    className={`bg-blue-600 disabled:cursor-not-allowed disabled:opacity-50 relative inline-flex items-center dark:text-white h-6 rounded-full w-11`}
                 >
                     <span className="dark:text-white sr-only">Daily</span>
                     <span
