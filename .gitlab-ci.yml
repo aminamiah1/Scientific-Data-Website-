@@ -38,6 +38,7 @@ build-job:
     image: node:20
     script:
         - npm ci --cache .npm --prefer-offline
+        - npm run ci:populate
         - npx tsx ./src/app/utils/main.ts &
         - npm run build
     artifacts:
@@ -83,17 +84,11 @@ cypress:
     script:
         - echo "Initializing database..."
         - npx prisma migrate deploy
-        - echo "Initializing database..."
-        - npx prisma migrate deploy
+        - npm run ci:populate
         - npm ci --cache .npm --prefer-offline
         - npx tsx ./src/app/utils/main.ts &
         - npm start &
         - sleep 10
-        - npx cypress run --record --key $CYPRESS_RECORD_KEY
         - $TEST_CMD
-        #- $TEST_SECRET
-        #- $TEST_AUTH
-        #- $TEST_SECRET
-        #- $TEST_AUTH
     dependencies:
         - build-job

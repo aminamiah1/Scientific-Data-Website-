@@ -101,7 +101,7 @@ export const CSV = {
  */
 
 type FieldMapping = {
-    [K in keyof typeof Prisma.ModelName]: {
+    [K in keyof typeof Prisma.ModelName]?: {
         [key: string]: string | string[];
     };
 };
@@ -213,34 +213,44 @@ export const FIELDS: FieldMapping = {
     VerificationToken: {},
 };
 
-export const readFileContent = async (file: File): Promise<string | ArrayBuffer> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
+export const readFileContent = async (
+    file: File
+): Promise<string | ArrayBuffer> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
 
-    reader.onload = () => {
-      if (reader.result) {
-        resolve(reader.result);
-      } else {
-        reject(new Error('Failed to read file.'));
-      }
-    }
+        reader.onload = () => {
+            if (reader.result) {
+                resolve(reader.result);
+            } else {
+                reject(new Error("Failed to read file."));
+            }
+        };
 
-    reader.onerror = () => {
-      reject(new Error('Error reading file.'));
-    }
+        reader.onerror = () => {
+            reject(new Error("Error reading file."));
+        };
 
-    reader.readAsText(file);
-  });
-}
+        reader.readAsText(file);
+    });
+};
 
 export const getFormattedCSVData = async (file: File) => {
-  const fileContent = await readFileContent(file);
-  const formattedCSV = fileContent
-    ?.toString()
-    .replaceAll('"', '')
-    .replaceAll('\r', '')
-    .split(',')
-    .flatMap(i => i.split('\n'));
+    const fileContent = await readFileContent(file);
+    const formattedCSV = fileContent
+        ?.toString()
+        .replaceAll('"', "")
+        .replaceAll("\r", "")
+        .split(",")
+        .flatMap((i) => i.split("\n"));
 
-  return formattedCSV;
-}
+    return formattedCSV;
+};
+
+export const API_URL = "http://localhost:3000/api";
+
+export type OATResolution = "daily" | "half-hourly";
+
+export type DataPoint = (string | number | boolean)[];
+export type DataDescriptors = string[];
+export type DataSet = [DataDescriptors, ...DataPoint[]];
