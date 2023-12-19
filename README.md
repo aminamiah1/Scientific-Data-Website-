@@ -47,6 +47,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Admin Sign In
+1. Once you click the sign in button, you will be faced with an email input
+2. Input, your school, work email (Nathan, if you're seeing this. your email works :) )
+3. Then, check your email. click the link and you're in, enjoy :)
+
 ## CI/CD
 
 The CI/CD job rules are as follows:
@@ -157,45 +162,6 @@ And then you can attempt to run the `npm run db:populate` command again. If you 
 
 ### Backend
 Run `npx tsx .\src\app\utils\main.ts` to start the NodeJS server. The PORT number is 4001
-
-### API documentation
-
-#### Map endpoints
-| Endpoint        | Description                 | Method | Status Code                    |
-| --------------- | --------------------------- | ------ | ------------------------------ |
-| `/api/svg`      | Return map SVG data         | GET    | 200 (OK)                       |
-
-#### Admin Endpoints
-
-| Endpoint        | Description                 | Method | Status Code                    |
-| --------------- | --------------------------- | ------ | ------------------------------ |
-| `/admin/login`  | Return login result         | GET    | 200 (OK) or 401 (Unauthorized) |
-| `/admin/login`  | Login to the admin panel    | POST   | 200 (OK) or 401 (Unauthorized) |
-| `/admin/logout` | Logout from the admin panel | GET    | 200 (OK)                       |
-
-#### Breakdown Endpoints
-
-| Endpoint                     | Description                                   | Method   | Status Code                 |
-| ---------------------------- | --------------------------------------------- | -------- | --------------------------- |
-| `/breakdown/heat/dwelling`   | Get/Post heat breakdown by dwelling type      | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/heat/tech`       | Get/Post heat breakdown by heating technology | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/heat/total`      | Get/Post total heat demand                    | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/energy/dwelling` | Get/Post energy breakdown by dwelling types   | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/energy/tech`     | Get/Post energy breakdown by technology       | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/energy/total`    | Get/Post total energy demand                  | GET/POST | 200 (OK) or 404 (Not Found) |
-
-#### Half-Hourly Endpoints
-
-| Endpoint              | Description                      | Method   | Status Code                 |
-| --------------------- | -------------------------------- | -------- | --------------------------- |
-| `/half-hourly/energy` | Get/Post half-hourly energy data | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/half-hourly/gas`    | Get/Post half-hourly gas data    | GET/POST | 200 (OK) or 404 (Not Found) |
-
-#### Heat Demand Endpoint
-
-| Endpoint       | Description               | Method   | Status Code                 |
-| -------------- | ------------------------- | -------- | --------------------------- |
-| `/heat-demand` | Get/Post heat demand data | GET/POST | 200 (OK) or 404 (Not Found) |
 
 ### API documentation
 
