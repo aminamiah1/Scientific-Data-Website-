@@ -1,6 +1,79 @@
+stages:
+    - build
+    - connect
+    - test
+
+variables:
+    MYSQL_DATABASE: group6
+    MYSQL_ROOT_PASSWORD: $DATABASE_PASSWORD
+
+connect:
+    stage: connect
+    image: mysql:8.2.0
+    services:
+        - mysql:8.2.0
+    script:
+        - mysql --version
+        - echo "Checking MySQL Service Status..."
+        - |
+            for i in {1..10}; do
+              mysqladmin ping -h"mysql" --silent && break
+              echo "Waiting for MySQL server, attempt $i..."
+              sleep 5
+            done
+        - echo "SELECT 'OK';" | mysql --host=mysql --user=root --password="$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE"
+
+cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+        # Recommended to cache the whole .npm directory instead
+        - .npm/
+
 build-job:
-  image: node:20
-  stage: build
-  script:
-    - npm ci
-    - npm run build
+    stage: build
+    services:
+        - mysql:8.2.0
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "push"
+    image: node:20
+    script:
+        - npm ci --cache .npm --prefer-offline
+        - npm run ci:populate
+        - npx tsx ./src/app/utils/main.ts &
+        - npm run build
+    artifacts:
+        paths:
+            - .next/
+            - cypress/
+        when: on_success
+        expire_in: "30 days"
+
+cypress:
+    stage: test
+    needs: ["build-job"]
+    # Defining variables at this level so that they have the ability
+    # to be overridden further into the job level:
+    # https://docs.gitlab.com/ee/ci/variables/index.html#cicd-variable-precedence
+    # and https://docs.gitlab.com/ee/ci/yaml/#workflowrulesvariables
+    services:
+        - mysql:8.2.0
+    variables:
+        TEST_CMD: "npm run test:all"
+        TEST_SECRET: $NEXTAUTH_SECRET
+        TEST_AUTH: $NEXTAUTH_URL
+        SQL_URL: $DATABASE_URL
+
+    # Docker image found from:
+    # https://hub.docker.com/r/cypress/base
+    image: cypress/base:20.9.0
+    script:
+        - npm ci --cache .npm --prefer-offline
+        - echo "Initializing database..."
+        - npx prisma migrate deploy
+        - npm run ci:populate
+        - npx tsx ./src/app/utils/main.ts &
+        - npm start &
+        - sleep 10
+        - $TEST_CMD
+    dependencies:
+        - build-job

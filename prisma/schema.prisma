@@ -6,14 +6,253 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"  // this is the connector we need to use for MariaDB: https://www.prisma.io/stack
+  provider = "mysql" // this is the connector we need to use for MariaDB: https://www.prisma.io/stack
   url      = env("DATABASE_URL")
 }
 
-// Just a test model so that we can see if prisma is working
-model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          String
+  accounts      Account[]
+  sessions      Session[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ------------------------------------------------------
+// These are all the models required for the application
+// ------------------------------------------------------
+model Country {
+  ctry11cd  String @id @unique // ctry11cd
+  ctry11nm  String
+  ctry11nmw String
+
+  regions Region[]
+}
+
+model Region {
+  rgn22cd  String  @id @unique // rgn22cd
+  rgn22nm  String
+  rgn22nmw String?
+
+  Country   Country @relation(fields: [countryId], references: [ctry11cd])
+  countryId String
+
+  districts LocalAuthorityDistrict[]
+}
+
+model LocalAuthorityDistrict {
+  lad19cd  String  @id @unique
+  lad19nm  String  @unique
+  lad19nmw String?
+
+  region   Region @relation(fields: [regionId], references: [rgn22cd])
+  regionId String
+
+  outputAreasLLS LowerLayerSuperOutputArea[]
+  EEICLA         EEICLA?
+}
+
+model LowerLayerSuperOutputArea {
+  lsoa11cd  String  @id @unique
+  lsoa11nm  String
+  lsoa11nmw String?
+
+  district   LocalAuthorityDistrict @relation(fields: [districtId], references: [lad19cd])
+  districtId String
+  AHDLSOA    AHDLSOA?
+}
+
+model HHPoHT {
+  Index DateTime @id @unique
+
+  NormalisedASHPHeat Float
+  NormalisedASHPElec Float
+
+  NormalisedGSHPHeat Float
+  NormalisedGSHPElec Float
+
+  NormalisedResistanceHeaterHeat Float
+  NormalisedResistanceHeaterElec Float
+
+  NormalisedGasBoilerHeat Float
+  NormalisedGasBoilerGas  Float
+
+  UKDailyAverageOAT Float
+}
+
+model AHDLSOA {
+  lsoa11cd String                    @id @unique
+  LSOA     LowerLayerSuperOutputArea @relation(fields: [lsoa11cd], references: [lsoa11cd])
+  Area     Float
+
+  AvgAfterDetachedBiomassBoiler     Float
+  AvgAfterDetachedGasBoiler         Float
+  AvgAfterDetachedOilBoiler         Float
+  AvgAfterDetachedResistanceHeating Float
+
+  AvgAfterFlatBiomassBoiler     Float
+  AvgAfterFlatGasBoiler         Float
+  AvgAfterFlatOilBoiler         Float
+  AvgAfterFlatResistanceHeating Float
+
+  AvgAfterSemiBiomassBoiler     Float
+  AvgAfterSemiGasBoiler         Float
+  AvgAfterSemiOilBoiler         Float
+  AvgAfterSemiResistanceHeating Float
+
+  AvgAfterTerracedBiomassBoiler     Float
+  AvgAfterTerracedGasBoiler         Float
+  AvgAfterTerracedOilBoiler         Float
+  AvgAfterTerracedResistanceHeating Float
+
+  AvgBeforeDetachedBiomassBoiler     Float
+  AvgBeforeDetachedGasBoiler         Float
+  AvgBeforeDetachedOilBoiler         Float
+  AvgBeforeDetachedResistanceHeating Float
+
+  AvgBeforeFlatBiomassBoiler     Float
+  AvgBeforeFlatGasBoiler         Float
+  AvgBeforeFlatOilBoiler         Float
+  AvgBeforeFlatResistanceHeating Float
+
+  AvgBeforeSemiBiomassBoiler     Float
+  AvgBeforeSemiGasBoiler         Float
+  AvgBeforeSemiOilBoiler         Float
+  AvgBeforeSemiResistanceHeating Float
+
+  AvgBeforeTerracedBiomassBoiler     Float
+  AvgBeforeTerracedGasBoiler         Float
+  AvgBeforeTerracedOilBoiler         Float
+  AvgBeforeTerracedResistanceHeating Float
+
+  lad11nm String
+  lad19nm String
+
+  NoOfDetachedBiomassBoilers    Int
+  NoOfDetachedGasBoilers        Int
+  NoOfDetachedOilBoilers        Int
+  NoOfDetachedResistanceHeaters Int
+
+  NoOfFlatBiomassBoilers    Int
+  NoOfFlatGasBoilers        Int
+  NoOfFlatOilBoilers        Int
+  NoOfFlatResistanceHeaters Int
+
+  NoOfSemiBiomassBoilers    Int
+  NoOfSemiGasBoilers        Int
+  NoOfSemiOilBoilers        Int
+  NoOfSemiResistanceHeaters Int
+
+  NoOfTerracedBiomassBoilers    Int
+  NoOfTerracedGasBoilers        Int
+  NoOfTerracedOilBoilers        Int
+  NoOfTerracedResistanceHeaters Int
+
+  RoadLength Float
+  Rurality   String
+
+  TotalHeatDemandBefore Float
+  TotalHeatDemandAfter  Float
+}
+
+model EEICLA {
+  lad19nm      String                 @id @unique
+  districtName LocalAuthorityDistrict @relation(fields: [lad19nm], references: [lad19nm])
+
+  AvgImpCostDetachedGasBoiler         Float
+  AvgImpCostDetachedOilBoiler         Float
+  AvgImpCostDetachedResistanceHeating Float
+  AvgImpCostDetachedBiomassBoiler     Float
+
+  AvgImpCostFlatGasBoiler         Float
+  AvgImpCostFlatOilBoiler         Float
+  AvgImpCostFlatResistanceHeating Float
+  AvgImpCostFlatBiomassBoiler     Float
+
+  AvgImpCostSemiGasBoiler         Float
+  AvgImpCostSemiOilBoiler         Float
+  AvgImpCostSemiResistanceHeating Float
+  AvgImpCostSemiBiomassBoiler     Float
+
+  AvgImpCostTerracedGasBoiler         Float
+  AvgImpCostTerracedOilBoiler         Float
+  AvgImpCostTerracedResistanceHeating Float
+  AvgImpCostTerracedBiomassBoiler     Float
+
+  NoOfDetachedGasBoilers        Int
+  NoOfDetachedResistanceHeaters Int
+  NoOfDetachedOilBoilers        Int
+  NoOfDetachedBiomassBoilers    Int
+
+  NoOfSemiGasBoilers        Int
+  NoOfSemiResistanceHeaters Int
+  NoOfSemiOilBoilers        Int
+  NoOfSemiBiomassBoilers    Int
+
+  NoOfTerracedGasBoilers        Int
+  NoOfTerracedResistanceHeaters Int
+  NoOfTerracedOilBoilers        Int
+  NoOfTerracedBiomassBoilers    Int
+
+  NoOfFlatGasBoilers        Int
+  NoOfFlatResistanceHeaters Int
+  NoOfFlatOilBoilers        Int
+  NoOfFlatBiomassBoilers    Int
+
+  TotalImprovementCosts Float
+}
+
+// ------------------------------------------------------
+// These are the lookup tables for the models to use
+// for relationships
+// ------------------------------------------------------
+// model CountryRegion {
+//   ctryId String
+//   rgnId  String @id
+
+//   country Country @relation(fields: [ctryId], references: [id])
+//   Region  Region?
+// }

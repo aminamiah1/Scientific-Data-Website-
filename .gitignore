@@ -7,11 +7,13 @@
 .yarn/install-state.gz
 
 # prisma
-/prisma/migrations/**
+#/prisma/migrations/**
 !/prisma/migrations/migration_lock.toml
 
 # testing
 /coverage
+/cypress/screenshots/
+/cypress/screenshots/**/*
 
 # next.js
 /.next/
