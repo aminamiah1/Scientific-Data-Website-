@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/cypress/screenshots/
+/cypress/screenshots/**/*
 
 # next.js
 /.next/

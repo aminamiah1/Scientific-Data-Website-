@@ -1,9 +1,6 @@
 # Table of Contents
 
-# Table of Contents
-
 -   [Table of Contents](#table-of-contents)
--   [Table of Contents](#table-of-contents-1)
 -   [Getting Started](#getting-started)
     -   [CI/CD](#cicd)
     -   [Cypress](#cypress)
@@ -11,22 +8,17 @@
         -   [Custom Commands](#custom-commands)
     -   [Prisma](#prisma)
         -   [Initial setup](#initial-setup)
-        -   [API documentation](#api-documentation)
-            -   [Admin Endpoints](#admin-endpoints)
-            -   [Breakdown Endpoints](#breakdown-endpoints)
-            -   [Half-Hourly Endpoints](#half-hourly-endpoints)
-            -   [Heat Demand Endpoint](#heat-demand-endpoint)
-        -   [API documentation](#api-documentation-1)
-            -   [Admin Endpoints](#admin-endpoints-1)
-            -   [Breakdown Endpoints](#breakdown-endpoints-1)
-            -   [Half-Hourly Endpoints](#half-hourly-endpoints-1)
-            -   [Heat Demand Endpoint](#heat-demand-endpoint-1)
         -   [Useful Commands](#useful-commands-1)
         -   [Using data in the application](#using-data-in-the-application)
         -   [TODOs](#todos)
--   [\<\<\<\<\<\<\< HEAD](#-head)
--   [Learn More](#learn-more)
--   [Deploy on Vercel](#deploy-on-vercel)
+    -   [Backend](#backend)
+    -   [Admin Log In Steps](#admin-log-in-steps)
+    -   [API documentation](#api-documentation)
+        -   [Map endpoints](#map-endpoints)
+        -   [Admin Endpoints](#admin-endpoints)
+        -   [Breakdown Endpoints](#breakdown-endpoints)
+        -   [Half-Hourly Endpoints](#half-hourly-endpoints)
+        -   [Heat Demand Endpoint](#heat-demand-endpoint)
 
 # Getting Started
 
@@ -60,7 +52,7 @@ The CI/CD job rules are as follows:
 
 ## Cypress
 
-To start using the Cypress framework, run:
+To start using the Cypress GUI, run:
 
 ```bash
 npm run cy:open
@@ -156,55 +148,6 @@ CREATE SCHEMA group6;
 
 And then you can attempt to run the `npm run db:populate` command again. If you run into any issues with this population process, please [open a new issue](https://git.cardiff.ac.uk/c1833364/y3-group-6-team-project/-/issues/new).
 
-### API documentation
-
-#### Admin Endpoints
-
-| Endpoint        | Description                 | Method | Status Code                    |
-| --------------- | --------------------------- | ------ | ------------------------------ |
-| `/admin/login`  | Return login result         | GET    | 200 (OK) or 401 (Unauthorized) |
-| `/admin/login`  | Login to the admin panel    | POST   | 200 (OK) or 401 (Unauthorized) |
-| `/admin/logout` | Logout from the admin panel | GET    | 200 (OK)                       |
-
-#### Admin Log In Steps
-
-KEY NOTES: 
-1. Make sure DATABASE_URL is correct.
-2. Make sure .env file is correct.
-3. Make sure to execute 'npm run db:sync' before attempting to use Prisma studio for the first time.
-4. Make sure you save your database after using prisma studio.
-5. for any errors: https://next-auth.js.org/errors 
-
-STEPS: 
-1. Add values into .env file
-2. Run 'npx prisma studio' into terminal to add your email - just id, name and email.
-3. Run npm run dev then go to endpoint.
-4. input email, check inbox for the magic link, click and you're in :)
-
-#### Breakdown Endpoints
-
-| Endpoint                     | Description                                   | Method   | Status Code                 |
-| ---------------------------- | --------------------------------------------- | -------- | --------------------------- |
-| `/breakdown/heat/dwelling`   | Get/Post heat breakdown by dwelling type      | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/heat/tech`       | Get/Post heat breakdown by heating technology | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/heat/total`      | Get/Post total heat demand                    | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/energy/dwelling` | Get/Post energy breakdown by dwelling types   | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/energy/tech`     | Get/Post energy breakdown by technology       | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/breakdown/energy/total`    | Get/Post total energy demand                  | GET/POST | 200 (OK) or 404 (Not Found) |
-
-#### Half-Hourly Endpoints
-
-| Endpoint              | Description                      | Method   | Status Code                 |
-| --------------------- | -------------------------------- | -------- | --------------------------- |
-| `/half-hourly/energy` | Get/Post half-hourly energy data | GET/POST | 200 (OK) or 404 (Not Found) |
-| `/half-hourly/gas`    | Get/Post half-hourly gas data    | GET/POST | 200 (OK) or 404 (Not Found) |
-
-#### Heat Demand Endpoint
-
-| Endpoint       | Description               | Method   | Status Code                 |
-| -------------- | ------------------------- | -------- | --------------------------- |
-| `/heat-demand` | Get/Post heat demand data | GET/POST | 200 (OK) or 404 (Not Found) |
-
 ### Useful Commands
 
 During rapid prototyping in development ([ONLY in development](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push)), models within the database may change, and new models may be introduced. This requires the schema to be updated in order for the changes to take effect on the application.
@@ -239,21 +182,71 @@ To interact with the Prisma Client, see [this guide](https://www.prisma.io/docs/
 -   [ ] Load _all_ CSV files automatically from the research folder, not just a select few
     -   This is required in order to support future dataset uploads.
 
-# <<<<<<< HEAD
+## Backend
 
-# Learn More
+Run `npx tsx .\src\app\utils\main.ts` to start the NodeJS server. The PORT number is 4001
 
-To learn more about Next.js, take a look at the following resources:
+## Admin Sign In
+1. Once you click the sign in button, you will be faced with an email input
+2. Input, your school, work email (Nathan, if you're seeing this. your email works :) )
+3. Then, check your email. click the link and you're in, enjoy :)
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Admin Log In Steps
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+KEY NOTES:
 
-# Deploy on Vercel
+1. Make sure DATABASE_URL is correct.
+2. Make sure .env file is correct.
+3. Make sure to execute 'npm run db:sync' before attempting to use Prisma studio for the first time.
+4. Make sure you save your database after using prisma studio.
+5. for any errors: https://next-auth.js.org/errors
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+STEPS:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Add values into .env file
+2. Run 'npx prisma studio' into terminal to add your email - just id, name and email.
+3. Run npm run dev then go to endpoint.
+4. input email, check inbox for the magic link, click and you're in :)
 
-> > > > > > > origin/release-2
+## API documentation
+
+### Map endpoints
+
+| Endpoint   | Description         | Method | Status Code |
+| ---------- | ------------------- | ------ | ----------- |
+| `/api/svg` | Return map SVG data | GET    | 200 (OK)    |
+
+### Admin Endpoints
+
+| Endpoint        | Description                 | Method | Status Code                    |
+| --------------- | --------------------------- | ------ | ------------------------------ |
+| `/admin/login`  | Return login result         | GET    | 200 (OK) or 401 (Unauthorized) |
+| `/admin/login`  | Login to the admin panel    | POST   | 200 (OK) or 401 (Unauthorized) |
+| `/admin/logout` | Logout from the admin panel | GET    | 200 (OK)                       |
+
+### Breakdown Endpoints
+
+| Endpoint                     | Description                                   | Method   | Status Code                 |
+| ---------------------------- | --------------------------------------------- | -------- | --------------------------- |
+| `/breakdown/heat/dwelling`   | Get/Post heat breakdown by dwelling type      | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/heat/tech`       | Get/Post heat breakdown by heating technology | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/heat/total`      | Get/Post total heat demand                    | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/energy/dwelling` | Get/Post energy breakdown by dwelling types   | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/energy/tech`     | Get/Post energy breakdown by technology       | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/breakdown/energy/total`    | Get/Post total energy demand                  | GET/POST | 200 (OK) or 404 (Not Found) |
+
+### Half-Hourly Endpoints
+
+| Endpoint              | Description                                  | Method   | Status Code                 |
+| --------------------- | -------------------------------------------- | -------- | --------------------------- |
+| `/half-hourly/energy` | Get/Post half-hourly energy data             | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/half-hourly/gas`    | Get/Post half-hourly gas data                | GET/POST | 200 (OK) or 404 (Not Found) |
+| `/half-hourly/oat`    | Get half-hourly outside air temperature data | GET      | 200 (OK)                    |
+
+`/half-hourly/oat` has a required parameter `resolution`, which can either be `daily` or `half-hourly`. E.g. `http://localhost:3000/api/half-hourly/oat?resolution=daily`
+
+### Heat Demand Endpoint
+
+| Endpoint       | Description               | Method   | Status Code                 |
+| -------------- | ------------------------- | -------- | --------------------------- |
+| `/heat-demand` | Get/Post heat demand data | GET/POST | 200 (OK) or 404 (Not Found) |

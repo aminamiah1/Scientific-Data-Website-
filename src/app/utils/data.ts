@@ -1,9 +1,7 @@
+import { ICSVRow } from "@/app/interfaces/ICSVRow";
 import { Prisma, PrismaClient } from "@prisma/client";
-import { ICSVRow } from "../interfaces/ICSVRow";
 import { COLUMN, FIELDS } from "./const";
-import { Feature, FeatureCollection, Geometry, GeometryObject } from "geojson";
 import { lowerCaseFirstLetter, upperCaseFirstLetter } from "./conversions";
-// import fs from "fs";
 
 const prismaClientSingleton = () => {
     return new PrismaClient();
@@ -16,6 +14,19 @@ declare global {
 export const db = globalThis.db ?? prismaClientSingleton();
 
 if (process.env.NODE_ENV !== "production") globalThis.db = db;
+
+/** Go from:
+ * [{K1: 1, K2: 2}, {K1: 3, K2: 4}]
+ * to:
+ *[
+ * ["K1", "K2"],
+ * [1, 2],
+ * [3, 4]
+ *];
+ */
+export const extractKeysToArray = (dataset: Object[]) => {
+    return [Object.keys(dataset[0]), ...dataset.map(Object.values)];
+};
 
 // For generalised rules (see mappings in utils/const.ts)
 const getSegments = (column: string) => {
@@ -154,7 +165,7 @@ const getDifferentFieldName = (
     searchByValue: boolean = false
 ) => {
     if (searchByValue) {
-        return Object.entries(FIELDS[model]).find((e) =>
+        return Object.entries(FIELDS[model]!).find((e) =>
             checkEntryForField(e, fieldName)
         )?.[0];
     }
@@ -187,13 +198,20 @@ const isDifferentFieldName = (
     return getDifferentFieldName(fieldName, model, searchByValue) !== undefined;
 };
 
-export const prepareCSVData = (data: ICSVRow, model: Prisma.ModelName) => {
+export const prepareCSVData = (
+    data: ICSVRow,
+    model: Prisma.ModelName,
+    searchForFieldName: boolean = true
+) => {
     const preparedData: any = {};
 
     for (const [col, value] of Object.entries(data)) {
-        const fieldName = isDifferentFieldName(col, model, true)
-            ? getDifferentFieldName(col, model, true)
-            : getSensitisedFieldName(col, model);
+        let fieldName = col;
+        if (searchForFieldName) {
+            fieldName = isDifferentFieldName(col, model, true)
+                ? getDifferentFieldName(col, model, true)
+                : getSensitisedFieldName(col, model);
+        }
 
         preparedData[fieldName] = prepareValue(value, fieldName, model);
     }

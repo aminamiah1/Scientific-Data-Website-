@@ -1,12 +1,11 @@
 "use client";
 
+import { GEOJSON } from "@/app/utils/const";
 import * as d3 from "d3";
-import { useEffect, useRef, useState } from "react";
-import { GEOJSON } from "../utils/const";
 import { FeatureCollection as GeoJSON } from "geojson";
+import { useEffect, useRef, useState } from "react";
 
 export default function Choropleth() {
-    const svgOpt = useRef(null);
     const svg = useRef(null);
     const [data, setData] = useState<any>(null);
 
@@ -21,17 +20,12 @@ export default function Choropleth() {
 
             const geo: GeoJSON = data;
 
-            // proj.postclip(
-            //     d3.geoClipRectangle(100, 100, 400, 400) as any
-            // );
-
-            d3.select(svgOpt.current)
+            d3.select(svg.current)
                 .selectAll("path")
                 .data(geo.features as any)
                 .enter()
                 .append("path")
                 .attr("class", "country")
-                // .attr("id", (d) => `${d.properties.CTRY11CD}`)
                 .attr("d", d3.geoPath().projection(proj) as any)
 
                 .each((d, i, g) => {
@@ -55,7 +49,7 @@ export default function Choropleth() {
             <h3>Choropleth</h3>
             <div>
                 <h2>Optimised:</h2>
-                <svg ref={svgOpt} width="400" height="500"></svg>
+                <svg ref={svg} width="400" height="500"></svg>
             </div>
             <div style={{ color: "white" }}>
                 {data &&
