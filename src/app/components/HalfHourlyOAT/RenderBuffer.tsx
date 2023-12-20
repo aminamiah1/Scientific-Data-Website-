@@ -115,8 +115,6 @@ export default function Visualise({ initialData }: { initialData: DataSet }) {
     }, [data, sampleRate]);
 
     useEffect(() => {
-        cacheItem(resolution, JSON.stringify(data), "update");
-
         d3.select("#chart")
             .selectAll("key")
             .data(colourDomain)
@@ -261,6 +259,10 @@ export default function Visualise({ initialData }: { initialData: DataSet }) {
 
         setData(sampledData as [DataDescriptors, ...DataPoint[]]);
     }, [sampleRate]);
+
+    useEffect(() => {
+        cacheItem(resolution, JSON.stringify(data), "insert");
+    }, [resolution]);
 
     return (
         <>
