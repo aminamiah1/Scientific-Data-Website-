@@ -1,21 +1,22 @@
 @startuml
-!theme plain
 title Component Diagram
-[webapp] as "Web App"
-rectangle "API Application" {
-  rectangle c1 as "Component 1"
-  rectangle c2 as "Component 2"
-  rectangle c3 as "Component 3"
-  rectangle c4 as "Component 4"
-  rectangle c5 as "Component 5"
+[User Interface]
+rectangle {
+  [Frontend Components]
+  [Backend API]
+  [Cypress Test Scripts]
+  [Data Compression]
+  [Authentication]
+  [File Management]
 }
-database MariaDB
- 
-[webapp] --> c1: Uses
-[webapp] --> c3: Uses
-[webapp] --> c4: Uses
-c4 --> c2: Uses
-c2 -left-> c5: Uses
-c3 --> MariaDB: Stores
-c2 --> MariaDB: Stores
+[Email System]
+
+[User Interface] --> [Frontend Components] : Uses
+[Frontend Components] --> [Backend API] : Communicates
+[Frontend Components] --> [Cypress Test Scripts] : Tested By
+[Backend API] -right-> [Cypress Test Scripts] : Tested By
+[Backend API] --> [Authentication] : Uses
+[Backend API] --> [File Management] : Uses
+[Backend API] --> [Data Compression] : Uses
+[Authentication] --> [Email System] : Sends emails using
 @enduml
