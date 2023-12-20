@@ -44,7 +44,7 @@ const AddAdminForm: React.FC = () => {
         <h2 className="text-2xl font-bold mb-4 text-center text-black">
           ADD ADMIN
         </h2>
-        <form onSubmit={handleSubmit} id="add-admin-form">
+        <form onSubmit={handleSubmit} id="add-admin-form" data-cy="addForm">
           <div className="mb-4">
             <label
               htmlFor="name"
@@ -54,6 +54,7 @@ const AddAdminForm: React.FC = () => {
               type="text"
               id="name"
               name="name"
+              data-cy="name"
               placeholder="Enter your name"
               className="mt-1 p-2 border focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-md w-full"
               value={name}
@@ -70,6 +71,7 @@ const AddAdminForm: React.FC = () => {
               type="email"
               id="email"
               name="email"
+              data-cy="email"
               placeholder="Enter your email"
               className="mt-1 p-2 border focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-md w-full"
               value={email}

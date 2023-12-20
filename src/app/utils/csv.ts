@@ -1,7 +1,8 @@
+import { ICSVRow } from "@/app/interfaces/ICSVRow";
 import { Prisma } from "@prisma/client";
 import csv from "csv-parser";
 import fs from "fs";
-import { ICSVRow } from "../interfaces/ICSVRow";
+import { CSV, FIELDS } from "./const";
 import { lowerCaseFirstLetter } from "./conversions";
 import {
     csvColumnToModelField,
@@ -10,16 +11,23 @@ import {
     prepareCSVData,
     db as prisma,
 } from "./data";
-import { CSV, FIELDS, SERVER_SIDE } from "./const";
-import path from "path";
 
-function defaultLoadOnEnd(rows: Object[], model: Prisma.ModelName) {
+function defaultLoadOnEnd(
+    rows: Object[],
+    model: Prisma.ModelName,
+    hasPreparedFieldNames: boolean = false
+) {
     return async () => {
         for (const csvRow of rows) {
+            const searchForFieldName = !hasPreparedFieldNames;
             // Convert all column names to their respective Prisma
             // field names, and convert all datatypes (only supports
             // string, int, float, and boolean at the moment)
-            const data = prepareCSVData(csvRow as ICSVRow, model);
+            const data = prepareCSVData(
+                csvRow as ICSVRow,
+                model,
+                searchForFieldName
+            );
 
             // Insert the data into the database
             await (
@@ -41,7 +49,8 @@ async function loadCSV(
     isResearch: boolean,
     onEnd: (
         rows: Object[],
-        model: Prisma.ModelName
+        model: Prisma.ModelName,
+        hasPreparedFieldNames?: boolean
     ) => () => Promise<void> = defaultLoadOnEnd
 ) {
     try {
@@ -84,7 +93,7 @@ async function loadCSV(
                         columns.push(
                             ...csvHeaders.map((x) => {
                                 const modelField = x;
-                                FIELDS[model][modelField] = x;
+                                FIELDS[model]![modelField] = x;
                                 return modelField;
                             })
                         );
@@ -116,7 +125,7 @@ async function loadCSV(
 
                 rows.push(row);
             })
-            .on("end", onEnd(rows, model));
+            .on("end", onEnd(rows, model, isResearch));
     } catch (error) {
         console.error("Error loading CSV data:", error);
     } finally {
@@ -183,43 +192,42 @@ export const loadLSOAs = async (
     );
 };
 
-export const loadAHDLSOA = async (afterEnd: () => Promise<any>) => {
+export const loadAHDLSOA = async (
+    afterEnd: () => Promise<any>,
+    filename: string = CSV.RESEARCH.AHD
+) => {
     const isResearch = true;
     await loadCSV(
-        CSV.RESEARCH.AHD,
+        filename,
         "AHDLSOA",
         isResearch,
         (rows, model) => async () => {
-            await defaultLoadOnEnd(rows, model)();
+            await defaultLoadOnEnd(rows, model, isResearch)();
             if (afterEnd) await afterEnd();
         }
     );
 };
 
-export const loadEEICLA = async (afterEnd: () => Promise<any>) => {
+export const loadEEICLA = async (
+    afterEnd: () => Promise<any>,
+    filename: string = CSV.RESEARCH.EEIC
+) => {
     const isResearch = true;
-    await loadCSV(
-        CSV.RESEARCH.EEIC,
-        "EEICLA",
-        isResearch,
-        (rows, model) => async () => {
-            await defaultLoadOnEnd(rows, model)();
-            if (afterEnd) await afterEnd();
-        }
-    );
+    await loadCSV(filename, "EEICLA", isResearch, (rows, model) => async () => {
+        await defaultLoadOnEnd(rows, model, isResearch)();
+        if (afterEnd) await afterEnd();
+    });
 };
 
-export const loadHHPoHT = async (afterEnd: () => Promise<any>) => {
+export const loadHHPoHT = async (
+    afterEnd: () => Promise<any>,
+    filename: string = CSV.RESEARCH.HHPoHT
+) => {
     const isResearch = true;
-    await loadCSV(
-        CSV.RESEARCH.HHPoHT,
-        "HHPoHT",
-        isResearch,
-        (rows, model) => async () => {
-            await defaultLoadOnEnd(rows, model)();
-            if (afterEnd) await afterEnd();
-        }
-    );
+    await loadCSV(filename, "HHPoHT", isResearch, (rows, model) => async () => {
+        await defaultLoadOnEnd(rows, model, isResearch)();
+        if (afterEnd) await afterEnd();
+    });
 };
 
 // loadCSV(path.join(SERVER_SIDE, CSV.RESEARCH.HHPoHT), "AHDLSOA");
