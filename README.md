@@ -186,6 +186,11 @@ To interact with the Prisma Client, see [this guide](https://www.prisma.io/docs/
 
 Run `npx tsx .\src\app\utils\main.ts` to start the NodeJS server. The PORT number is 4001
 
+## Admin Sign In
+1. Once you click the sign in button, you will be faced with an email input
+2. Input, your school, work email (Nathan, if you're seeing this. your email works :) )
+3. Then, check your email. click the link and you're in, enjoy :)
+
 ## Admin Log In Steps
 
 KEY NOTES:
