@@ -1,4 +1,5 @@
 @startuml
+!theme plain
 title Component Diagram
 [User Interface]
 rectangle {
@@ -11,6 +12,8 @@ rectangle {
 }
 [Email System]
 
+database MariaDB
+
 [User Interface] --> [Frontend Components] : Uses
 [Frontend Components] --> [Backend API] : Communicates
 [Frontend Components] --> [Cypress Test Scripts] : Tested By
@@ -19,4 +22,6 @@ rectangle {
 [Backend API] --> [File Management] : Uses
 [Backend API] --> [Data Compression] : Uses
 [Authentication] --> [Email System] : Sends emails using
+[Backend API] --> MariaDB : Uses
+[Authentication] --> MariaDB : Uses
 @enduml
